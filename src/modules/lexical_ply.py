@@ -66,7 +66,7 @@ class Lexer(object):
         t.lexer.skip(1)
 
     # Build the lexer
-    def build(self,**kwargs):
+    def build(self, **kwargs):
         self.lexer = lex.lex(module=self, **kwargs)
 
     # Test it output

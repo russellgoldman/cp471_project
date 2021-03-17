@@ -6,12 +6,11 @@ from lexical_ply import Lexer, tokenize
 
 # testing correct lexeme classification of the Number token
 class TestNumberToken(unittest.TestCase):
-    s: str = "Number num = 10"
+    test_str: str = "Number num = 10"
 
     def test_declaration(self) -> None:
         expected = '(Number)(id, num)(=)(10)(;)'
-        tokens = tokenize(str)
-
+        tokens = tokenize(self.test_str)
         given = ''.join(["({str})".format(str=str(tok)) for tok in tokens]) 
 
         self.assertEqual(given, expected, "Should be something ...")
