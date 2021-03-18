@@ -64,20 +64,23 @@ class SymbolTable:
 
 
 # Preliminary testing
+name = 'my_str'
 s = SymbolTable()
 try:
-    s.get_entry('my_str')
+    s.get_entry(name)
 except ValueError as e:
     print("Recovered from error: ", end="")
     print(e)
 
-s.create_entry('my_str')
+s.create_entry(name)
 try:
-    s.create_entry('my_str')
+    s.create_entry(name)
 except ValueError as e:
     print("Recovered from error: ", end="")
     print(e)
 
-s.set_symbol('my_str', 'str')
-s.set_symbol('my_str', 'int')
-print(s.get_entry('my_str').symbol)
+s.set_symbol(name, 'str')
+s.set_symbol(name, 'int')
+s.set_value(name, 3.01)
+print(s.get_entry(name).symbol)
+print(s.get_entry(name).value)
