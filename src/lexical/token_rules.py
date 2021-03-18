@@ -60,7 +60,7 @@ def t_NUMBER_LITERAL(t):
 
 
 def t_SEPARATOR(t):
-    r'\(|\)|{|}|\[|\]|;|,|\#|@|\->|\|.'
+    r'\(|\)|{|}|\[|\]|;|,|\#|@|->|\|.'
     return t
 
 
