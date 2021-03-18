@@ -1,6 +1,6 @@
 # Ref: https://ply.readthedocs.io/en/latest/ply.html
 import ply.lex as lex
-import modules.token_rules
+import token_rules
 
 class Lexer(object):
     # Build the lexer using the token rules module
