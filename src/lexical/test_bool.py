@@ -5,20 +5,18 @@ from testing_utils import assert_each_token
 # testing correct lexeme classification of the Number token
 
 
-class TestStringToken(unittest.TestCase):
-    def test_string_operators(self):
-        source = "String str3 = str1 + str2;"
+class TestBoolToken(unittest.TestCase):
+    def test_bool_operators(self):
+        source = "Boolean bool = True"
 
         expected_token = [
-            "('STRING', 'String')",
-            "('ID', 'str3')",
+            "('BOOLEAN', 'Boolean')",
+            "('ID', 'bool')",
             "('OPERATOR', '=')",
-            "('ID', 'str1')",
-            "('OPERATOR', '+')",
-            "('ID', 'str2')",
+            "('TRUE', 'True')",
             "('SEPARATOR', ';')"
         ]
-        
+
         assert_each_token(self, source, expected_token)
 
 
