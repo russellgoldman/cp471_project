@@ -38,7 +38,9 @@ tokens = [
 # Token Definitions
 # --------------------
 # Tokens can be defined as strings or as functions using regex
-
+def t_COMMENT(t):
+    r'@![\ -~]*|@!![\ -~]*!!@'
+    pass
 
 def t_ID(t):
     r'([A-Za-z]|_)([A-Za-z]|[0-9]|_)*'
@@ -71,7 +73,7 @@ def t_STRING_LITERAL(t):
 
 
 # Ignore spaces and tabs
-t_ignore = ' \t'
+t_ignore = ' \t\n'
 
 # Error handling rule
 
