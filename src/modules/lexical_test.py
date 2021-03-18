@@ -1,19 +1,27 @@
 import unittest
 from typing import List, Set, Dict, Tuple, Optional
-import ply.lex as lex
-
-from lexical_ply import Lexer, tokenize
+from lexical import Lexer
 
 # testing correct lexeme classification of the Number token
 class TestNumberToken(unittest.TestCase):
-    test_str: str = "Number num = 10"
+    test_str: str = "Number num = 10;"
 
     def test_declaration(self) -> None:
-        expected = '(Number)(id, num)(=)(10)(;)'
-        tokens = tokenize(self.test_str)
-        given = ''.join(["({str})".format(str=str(tok)) for tok in tokens]) 
-
-        self.assertEqual(given, expected, "Should be something ...")
+        expected_token = [
+            "('NUMBER', 'Number')",
+            "('ID', 'num')",
+            "('OPERATOR', '=')",
+            "('NUMBER_LITERAL', 10)",
+            "('SEPARATOR', ';')"
+        ]
+        l = Lexer()
+        l.build(self.test_str)
+        given_token = l.get_next_token()
+        token_num = 0
+        while given_token is not None:
+            self.assertEqual(str(given_token), expected_token[token_num], "Should be something ...")
+            given_token = l.get_next_token()
+            token_num = token_num + 1
 
 if __name__ == '__main__':
     unittest.main()
