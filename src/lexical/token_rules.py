@@ -49,6 +49,11 @@ def t_ID(t):
     return t
 
 
+def t_SEPARATOR(t):
+    r'\(|\)|{|}|\[|\]|;|,|\#|@|->|\|.'
+    return t
+
+
 def t_OPERATOR(t):
     r'==|<=|>=|!=|>>|<<|\*\*|\+\+|--|>|<|=|\+|-|\*|/|%'
     return t
@@ -59,12 +64,9 @@ def t_NUMBER_LITERAL(t):
     t.value = int(t.value)
     return t
 
+
 def t_STRING_LITERAL(t):
     r'(\"[\ -~]*\")|(\'[\ -~]*\')'
-    return t
-
-def t_SEPARATOR(t):
-    r'\(|\)|{|}|\[|\]|;|,|\#|@|->|\|.'
     return t
 
 

@@ -30,7 +30,7 @@ class TestStringToken(unittest.TestCase):
             "('OPERATOR', '+')",
             "('ID', 'num2')",
             "('SEPARATOR', ')')",
-            "('SEPARATOR', ';')"
+            "('SEPARATOR', ';')",
             "('SEPARATOR', '}')",
 
         ]
