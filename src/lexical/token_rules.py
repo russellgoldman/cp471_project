@@ -26,7 +26,6 @@ reserved = {
 # --------------------
 tokens = [
     'ID',
-    'KEYWORD',
     'OPERATOR',
     'NUMBER_LITERAL',
     'SEPARATOR'
@@ -42,10 +41,6 @@ def t_ID(t):
     # t.value = (t.value, symbol_lookup(t.value))
     # Check if ID is a reserved word
     t.type = reserved.get(t.value, 'ID')
-    return t
-
-def t_KEYWORD(t):
-    r'if|elif|else|for|while|this|Number|String|Boolean|Function|Object|return|Import|print|input|in|out'
     return t
 
 def t_OPERATOR(t):
