@@ -30,6 +30,7 @@ tokens = [
     'ID',
     'OPERATOR',
     'NUMBER_LITERAL',
+    'STRING_LITERAL',
     'SEPARATOR'
 ] + list(reserved.values())
 
@@ -58,6 +59,9 @@ def t_NUMBER_LITERAL(t):
     t.value = int(t.value)
     return t
 
+def t_STRING_LITERAL(t):
+    r'(\"[\ -~]*\")|(\'[\ -~]*\')'
+    return t
 
 def t_SEPARATOR(t):
     r'\(|\)|{|}|\[|\]|;|,|\#|@|\->|\|.'
