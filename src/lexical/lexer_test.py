@@ -1,6 +1,6 @@
 import unittest
 from typing import List, Set, Dict, Tuple, Optional
-from lexical import Lexer
+from lexer import Lexer
 
 # testing correct lexeme classification of the Number token
 class TestNumberToken(unittest.TestCase):
@@ -14,14 +14,19 @@ class TestNumberToken(unittest.TestCase):
             "('NUMBER_LITERAL', 10)",
             "('SEPARATOR', ';')"
         ]
+        
         l = Lexer()
         l.build(self.test_str)
         given_token = l.get_next_token()
         token_num = 0
+
         while given_token is not None:
-            self.assertEqual(str(given_token), expected_token[token_num], "Should be something ...")
+            self.assertEqual(str(given_token), expected_token[token_num], 
+                "Should be {expected}".format(expected=expected_token[token_num]))
+                
             given_token = l.get_next_token()
             token_num = token_num + 1
+
 
 if __name__ == '__main__':
     unittest.main()

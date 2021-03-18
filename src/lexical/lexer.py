@@ -1,10 +1,7 @@
 # Ref: https://ply.readthedocs.io/en/latest/ply.html
 import ply.lex as lex
-import token_rules
+import modules.token_rules
 
-# --------------------
-# Lexical Analyzer
-# --------------------
 class Lexer(object):
     # Build the lexer using the token rules module
     def build(self, data, **kwargs):
@@ -14,6 +11,7 @@ class Lexer(object):
     # Get the next token
     def get_next_token(self):
         tok = self.lexer.token()
+
         if not tok:
             return None
         return (tok.type, tok.value)
