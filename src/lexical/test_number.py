@@ -1,6 +1,7 @@
 import unittest
 from typing import List, Set, Dict, Tuple, Optional
 from lexer import Lexer
+from testing_utils import assert_each_token
 
 # testing correct lexeme classification of the Number token
 class TestNumberToken(unittest.TestCase):
@@ -15,17 +16,7 @@ class TestNumberToken(unittest.TestCase):
             "('SEPARATOR', ';')"
         ]
         
-        l = Lexer()
-        l.build(source)
-        given_token = l.get_next_token()
-        token_num = 0
-
-        while given_token is not None:
-            self.assertEqual(str(given_token), expected_token[token_num], 
-                "Token {number} should be {expected}".format(number=token_num, expected=expected_token[token_num]))
-                
-            given_token = l.get_next_token()
-            token_num = token_num + 1
+        assert_each_token(self, source, expected_token)
 
     def test_number_operators(self) -> None:
         source: str = "num = num + 2 * 3;"
@@ -41,18 +32,18 @@ class TestNumberToken(unittest.TestCase):
             "('SEPARATOR', ';')"
         ]
         
-        l = Lexer()
-        l.build(source)
-        given_token = l.get_next_token()
-        token_num = 0
+        assert_each_token(self, source, expected_token)
 
-        while given_token is not None:
-            self.assertEqual(str(given_token), expected_token[token_num], 
-                "Token {number} should be {expected}".format(number=token_num, expected=expected_token[token_num]))
-                
-            given_token = l.get_next_token()
-            token_num = token_num + 1
+    def test_undefined_number(self) -> None:
+        source: str = "Number num;"
 
+        expected_token = [
+            "('NUMBER', 'Number')",
+            "('ID', 'num')",
+            "('SEPARATOR', ';')"
+        ]
+
+        assert_each_token(self, source, expected_token)
 
 if __name__ == '__main__':
     unittest.main()
