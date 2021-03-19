@@ -7,7 +7,7 @@ from testing_utils import assert_each_token
 
 class TestBoolToken(unittest.TestCase):
     def test_bool_operators(self):
-        source = "Boolean bool = True"
+        source = "Boolean bool = True;"
 
         expected_token = [
             "('BOOLEAN', 'Boolean')",
