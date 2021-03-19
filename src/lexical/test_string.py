@@ -2,9 +2,7 @@ import unittest
 from lexer import Lexer
 from testing_utils import assert_each_token
 
-# testing correct lexeme classification of the Number token
-
-
+# Test lexeme classification for String tokens
 class TestStringToken(unittest.TestCase):
     def test_string_declaration(self):
         source = "String str = \"Hello, World!\";"

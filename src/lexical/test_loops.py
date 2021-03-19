@@ -1,10 +1,9 @@
 import unittest
 from lexer import Lexer
 from testing_utils import assert_each_token
-# testing correct lexeme classification of the Number token
 
-
-class TestStringToken(unittest.TestCase):
+# Test lexeme classification for loop tokens
+class TestLoopToken(unittest.TestCase):
     def test_for_loop(self):
         source = "for(Number i=0; i<10; i++){ }"
         expected_token = [

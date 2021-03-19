@@ -1,10 +1,9 @@
 import unittest
 from lexer import Lexer
 from testing_utils import assert_each_token
-# testing correct lexeme classification of the Number token
 
-
-class TestStringToken(unittest.TestCase):
+# Test lexeme classification for conditional tokens
+class TestConditionalToken(unittest.TestCase):
     def test_if_statement(self):
         source = "if (bool == True) { } else { }"
 

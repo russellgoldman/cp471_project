@@ -2,8 +2,8 @@ import unittest
 from lexer import Lexer
 from testing_utils import assert_each_token
 
-# testing correct lexeme classification of the Number token
-class TestComment(unittest.TestCase):
+# Test lexeme classification for comment tokens
+class TestCommentToken(unittest.TestCase):
     def test_single_line(self):
         source = "@! Hello, World!"
 

@@ -1,11 +1,10 @@
 import unittest
 from lexer import Lexer
 from testing_utils import assert_each_token
-# testing correct lexeme classification of the Number token
 
-
-class TestStringToken(unittest.TestCase):
-    def test_for_loop(self):
+# Test lexeme classification for function tokens
+class TestFunctionToken(unittest.TestCase):
+    def test_function_declaration(self):
         source = "Function add = (Number num1, Number num2) -> (Number) { return (num1 + num2); }"
         expected_token = [
             "('FUNCTION', 'Function')",

@@ -2,8 +2,8 @@ import unittest
 from lexer import Lexer
 from testing_utils import assert_each_token
 
-# testing correct lexeme classification of the Number token
-class TestOutput(unittest.TestCase):
+# Test lexeme classification for output tokens
+class TestOutputToken(unittest.TestCase):
     def test_output_function(self):
         source = "print(str);"
 
