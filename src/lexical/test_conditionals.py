@@ -5,7 +5,13 @@ from testing_utils import assert_each_token
 # Test lexeme classification for conditional tokens
 class TestConditionalToken(unittest.TestCase):
     def test_if_statement(self):
-        source = "if (bool == True) { } else { }"
+        source = """
+        if (bool == True) {
+            @! Something
+        } else {
+            @! Something else
+        }
+        """
 
         expected_token = [
             "('IF', 'if')",
@@ -23,7 +29,13 @@ class TestConditionalToken(unittest.TestCase):
         assert_each_token(self, source, expected_token)
 
     def test_elif_statement(self):
-        source = "if (bool == True) { } elif ( bool == False) { }"
+        source = """
+        if (bool == True) {
+            @! Something
+        } elif ( bool == False) {
+            @! Something else
+        }
+        """
 
         expected_token = [
             "('IF', 'if')",
