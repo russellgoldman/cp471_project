@@ -15,16 +15,16 @@ class TestConditionalToken(unittest.TestCase):
 
         expected_token = [
             "('IF', 'if')",
-            "('SEPARATOR', '(')",
+            "('LPAREN', '(')",
             "('ID', 'bool')",
             "('OPERATOR', '==')",
             "('TRUE', 'True')",
-            "('SEPARATOR', ')')",
-            "('SEPARATOR', '{')",
-            "('SEPARATOR', '}')",
+            "('RPAREN', ')')",
+            "('LCURLY', '{')",
+            "('RCURLY', '}')",
             "('ELSE', 'else')",
-            "('SEPARATOR', '{')",
-            "('SEPARATOR', '}')",
+            "('LCURLY', '{')",
+            "('RCURLY', '}')",
         ]
         assert_each_token(self, source, expected_token)
 
@@ -39,21 +39,21 @@ class TestConditionalToken(unittest.TestCase):
 
         expected_token = [
             "('IF', 'if')",
-            "('SEPARATOR', '(')",
+            "('LPAREN', '(')",
             "('ID', 'bool')",
             "('OPERATOR', '==')",
             "('TRUE', 'True')",
-            "('SEPARATOR', ')')",
-            "('SEPARATOR', '{')",
-            "('SEPARATOR', '}')",
+            "('RPAREN', ')')",
+            "('LCURLY', '{')",
+            "('RCURLY', '}')",
             "('ELIF', 'elif')",
-            "('SEPARATOR', '(')",
+            "('LPAREN', '(')",
             "('ID', 'bool')",
             "('OPERATOR', '==')",
             "('FALSE', 'False')",
-            "('SEPARATOR', ')')",
-            "('SEPARATOR', '{')",
-            "('SEPARATOR', '}')",
+            "('RPAREN', ')')",
+            "('LCURLY', '{')",
+            "('RCURLY', '}')",
         ]
 
         assert_each_token(self, source, expected_token)
