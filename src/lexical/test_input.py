@@ -12,9 +12,9 @@ class TestInputToken(unittest.TestCase):
             "('ID', 'str')",
             "('OPERATOR', '=')",
             "('INPUT', 'input')",
-            "('SEPARATOR', '(')",
-            "('SEPARATOR', ')')",
-            "('SEPARATOR', ';')"
+            "('LPAREN', '(')",
+            "('RPAREN', ')')",
+            "('SEMICOLON', ';')"
         ]
         
         assert_each_token(self, source, expected_token)
@@ -24,9 +24,9 @@ class TestInputToken(unittest.TestCase):
 
         expected_token = [
             "('IN', 'in')",
-            "('OPERATOR', '>>')",
+            "('IN_PIPE', '>>')",
             "('ID', 'str')",
-            "('SEPARATOR', ';')"
+            "('SEMICOLON', ';')"
         ]
         
         assert_each_token(self, source, expected_token)

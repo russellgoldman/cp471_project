@@ -23,7 +23,7 @@ class TestCommentToken(unittest.TestCase):
             "('ID', 'str')",
             "('OPERATOR', '=')",
             "('STRING_LITERAL', '\"Above line is skipped\"')",
-            "('SEPARATOR', ';')"
+            "('SEMICOLON', ';')"
         ]
         
         assert_each_token(self, source, expected_token)

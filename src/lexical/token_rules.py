@@ -33,11 +33,23 @@ structural = {
     ']': 'RSQUARE',
     '{': 'LCURLY',
     '}': 'RCURLY',
+    ';': 'SEMICOLON',
     '+': 'PLUS',
     '-': 'MINUS',
     '*': 'MULTIPLY',
     '/': 'DIVIDE',
-    '%': 'MODULUS'
+    '%': 'MODULUS',
+    '++': 'INCREMENT',
+    '--': 'DECREMENT',
+    '==': 'EQUAL',
+    '<': 'LESS',
+    '>': 'GREATER',
+    '<=': 'LESS_EQUAL',
+    '>=': 'GREATER_EQUAL',
+    '!=': 'NOT_EQUAL',
+    '->': 'RETURNS',
+    '<<': 'OUT_PIPE',
+    '>>': 'IN_PIPE'
 }
 
 

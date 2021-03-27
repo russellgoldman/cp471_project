@@ -12,7 +12,7 @@ class TestStringToken(unittest.TestCase):
             "('ID', 'str')",
             "('OPERATOR', '=')",
             "('STRING_LITERAL', '\"Hello, World!\"')",
-            "('SEPARATOR', ';')"
+            "('SEMICOLON', ';')"
         ]
         
         assert_each_token(self, source, expected_token)
@@ -25,9 +25,9 @@ class TestStringToken(unittest.TestCase):
             "('ID', 'str3')",
             "('OPERATOR', '=')",
             "('ID', 'str1')",
-            "('OPERATOR', '+')",
+            "('PLUS', '+')",
             "('ID', 'str2')",
-            "('SEPARATOR', ';')"
+            "('SEMICOLON', ';')"
         ]
         
         assert_each_token(self, source, expected_token)

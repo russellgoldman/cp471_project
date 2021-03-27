@@ -12,7 +12,7 @@ class TestBoolToken(unittest.TestCase):
             "('ID', 'bool')",
             "('OPERATOR', '=')",
             "('TRUE', 'True')",
-            "('SEPARATOR', ';')"
+            "('SEMICOLON', ';')"
         ]
 
         assert_each_token(self, source, expected_token)

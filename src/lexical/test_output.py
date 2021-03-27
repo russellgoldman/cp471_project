@@ -9,10 +9,10 @@ class TestOutputToken(unittest.TestCase):
 
         expected_token = [
             "('PRINT', 'print')",
-            "('SEPARATOR', '(')",
+            "('LPAREN', '(')",
             "('ID', 'str')",
-            "('SEPARATOR', ')')",
-            "('SEPARATOR', ';')"
+            "('RPAREN', ')')",
+            "('SEMICOLON', ';')"
         ]
         
         assert_each_token(self, source, expected_token)
@@ -22,11 +22,11 @@ class TestOutputToken(unittest.TestCase):
 
         expected_token = [
             "('OUT', 'out')",
-            "('OPERATOR', '<<')",
+            "('OUT_PIPE', '<<')",
             "('ID', 'str')",
-            "('OPERATOR', '<<')",
+            "('OUT_PIPE', '<<')",
             "('STRING_LITERAL', '\" and more\"')",
-            "('SEPARATOR', ';')"
+            "('SEMICOLON', ';')"
         ]
         
         assert_each_token(self, source, expected_token)

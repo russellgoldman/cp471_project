@@ -13,7 +13,7 @@ class TestNumberToken(unittest.TestCase):
             "('ID', 'num')",
             "('OPERATOR', '=')",
             "('NUMBER_LITERAL', 10)",
-            "('SEPARATOR', ';')"
+            "('SEMICOLON', ';')"
         ]
         
         assert_each_token(self, source, expected_token)
@@ -25,11 +25,11 @@ class TestNumberToken(unittest.TestCase):
             "('ID', 'num')",
             "('OPERATOR', '=')",
             "('ID', 'num')",
-            "('OPERATOR', '+')",
+            "('PLUS', '+')",
             "('NUMBER_LITERAL', 2)",
-            "('OPERATOR', '*')",
+            "('MULTIPLY', '*')",
             "('NUMBER_LITERAL', 3)",
-            "('SEPARATOR', ';')"
+            "('SEMICOLON', ';')"
         ]
         
         assert_each_token(self, source, expected_token)
@@ -40,7 +40,7 @@ class TestNumberToken(unittest.TestCase):
         expected_token = [
             "('NUMBER', 'Number')",
             "('ID', 'num')",
-            "('SEPARATOR', ';')"
+            "('SEMICOLON', ';')"
         ]
 
         assert_each_token(self, source, expected_token)
