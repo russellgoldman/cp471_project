@@ -1,7 +1,6 @@
 import unittest
 from lexer import Lexer
 
-
 def assert_each_token(self, source, expected_token, print_token=False):
     l = Lexer()
     l.build(source)

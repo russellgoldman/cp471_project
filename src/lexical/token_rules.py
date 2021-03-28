@@ -20,8 +20,38 @@ reserved = {
     'input': 'INPUT',
     'in': 'IN',
     'True': 'TRUE',
-    'False': 'FALSE'
+    'False': 'FALSE',
 }
+
+# --------------------
+# Structural Keywords
+# --------------------
+structural = {
+    '(': 'LPAREN',
+    ')': 'RPAREN',
+    '[': 'LSQUARE',
+    ']': 'RSQUARE',
+    '{': 'LCURLY',
+    '}': 'RCURLY',
+    ';': 'SEMICOLON',
+    '+': 'PLUS',
+    '-': 'MINUS',
+    '*': 'MULTIPLY',
+    '/': 'DIVIDE',
+    '%': 'MODULUS',
+    '++': 'INCREMENT',
+    '--': 'DECREMENT',
+    '==': 'EQUAL',
+    '<': 'LESS',
+    '>': 'GREATER',
+    '<=': 'LESS_EQUAL',
+    '>=': 'GREATER_EQUAL',
+    '!=': 'NOT_EQUAL',
+    '->': 'RETURNS',
+    '<<': 'OUT_PIPE',
+    '>>': 'IN_PIPE'
+}
+
 
 # --------------------
 # Token Names
@@ -31,8 +61,9 @@ tokens = [
     'OPERATOR',
     'NUMBER_LITERAL',
     'STRING_LITERAL',
-    'SEPARATOR'
-] + list(reserved.values())
+    'SEPARATOR',
+]   + list(reserved.values())       \
+    + list(structural.values())
 
 # --------------------
 # Token Definitions
@@ -53,11 +84,13 @@ def t_ID(t):
 
 def t_SEPARATOR(t):
     r'\(|\)|{|}|\[|\]|;|,|\#|@|->|\|.'
+    t.type = structural.get(t.value, 'SEPARATOR')
     return t
 
 
 def t_OPERATOR(t):
     r'==|<=|>=|!=|>>|<<|\*\*|\+\+|--|>|<|=|\+|-|\*|/|%'
+    t.type = structural.get(t.value, 'OPERATOR')
     return t
 
 
