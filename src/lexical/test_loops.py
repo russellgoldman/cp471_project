@@ -11,7 +11,7 @@ class TestLoopToken(unittest.TestCase):
             "('LPAREN', '(')",
             "('NUMBER', 'Number')",
             "('ID', 'i')",
-            "('OPERATOR', '=')",
+            "('SET', '=')",
             "('NUMBER_LITERAL', 0)",
             "('SEMICOLON', ';')",
             "('ID', 'i')",

@@ -10,7 +10,7 @@ class TestInputToken(unittest.TestCase):
         expected_token = [
             "('STRING', 'String')",
             "('ID', 'str')",
-            "('OPERATOR', '=')",
+            "('SET', '=')",
             "('INPUT', 'input')",
             "('LPAREN', '(')",
             "('RPAREN', ')')",

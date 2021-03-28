@@ -10,7 +10,7 @@ class TestBoolToken(unittest.TestCase):
         expected_token = [
             "('BOOLEAN', 'Boolean')",
             "('ID', 'bool')",
-            "('OPERATOR', '=')",
+            "('SET', '=')",
             "('TRUE', 'True')",
             "('SEMICOLON', ';')"
         ]

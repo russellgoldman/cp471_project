@@ -9,7 +9,7 @@ class TestFunctionToken(unittest.TestCase):
         expected_token = [
             "('FUNCTION', 'Function')",
             "('ID', 'add')",
-            "('OPERATOR', '=')",
+            "('SET', '=')",
             "('LPAREN', '(')",
             "('NUMBER', 'Number')",
             "('ID', 'num1')",

@@ -11,7 +11,7 @@ class TestNumberToken(unittest.TestCase):
         expected_token = [
             "('NUMBER', 'Number')",
             "('ID', 'num')",
-            "('OPERATOR', '=')",
+            "('SET', '=')",
             "('NUMBER_LITERAL', 10)",
             "('SEMICOLON', ';')"
         ]
@@ -23,7 +23,7 @@ class TestNumberToken(unittest.TestCase):
 
         expected_token = [
             "('ID', 'num')",
-            "('OPERATOR', '=')",
+            "('SET', '=')",
             "('ID', 'num')",
             "('PLUS', '+')",
             "('NUMBER_LITERAL', 2)",

@@ -48,6 +48,7 @@ structural = {
     '>=': 'GREATER_EQUAL',
     '!=': 'NOT_EQUAL',
     '->': 'RETURNS',
+    '=': 'SET',
     '<<': 'OUT_PIPE',
     '>>': 'IN_PIPE'
 }
