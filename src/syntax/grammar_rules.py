@@ -104,23 +104,27 @@ def p_returnExpression_multiplyExpression(p):
 # ifStatement
 def p_ifStatement(p):
     'ifStatement : if LPARAMS relationExpression RPARAMS statementBody elifElseStatement'
+    p[0] = p[5]
 
 
 # elifElseStatement
 def p_elifElseStatement_elif(p):
     'elifElseStatement : elif LPARAMS relationExpression RPARAMS statementBody elifElseStatement'
+    p[0] = p[5]
 
 def p_elifElseStatement_else(p):
     'elifElseStatement : else statementBody'
+    p[0] = p[2]
 
 def p_elifElseStatement_empty(p):
     'elifElseStatement : '
-    p[0] = p[1]
+    p[0] = None
 
 
 # statementBody
 def p_statementBody(p):
     'statementBody : LCURLY statementBodyExpression RCURLY'
+    p[0] = p[2]
 
 
 # statementBodyExpression
@@ -144,7 +148,6 @@ def p_iterationStatement_while(p):
 
 def p_iterationStatement_for(p):
     'iterationStatement : for LPARAMS variableDeclaration SET NUMBER_LITERAL SEMICOLON relationExpression SEMICOLON iterationExpression RPARAMS statementBody'
-
 
 # iterationExpression
 def p_iterationExpression_set(p):
