@@ -10,5 +10,5 @@ class Parser(object):
         self.lexer.build()
         self.parser = yacc.yacc(module=grammar_rules, **kwargs)
 
-    def parse(self, data):
-        return self.parser.parse(data, lexer = self.lexer)
+    def parse(self, data, debug=False):
+        return self.parser.parse(data, debug=debug, lexer = self.lexer)
