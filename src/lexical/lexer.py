@@ -4,14 +4,14 @@ import token_rules
 
 class Lexer(object):
     # Build the lexer using the token rules module
-    def build(self, data, **kwargs):
+    def build(self, **kwargs):
         self.lexer = lex.lex(module=token_rules, **kwargs)
-        self.lexer.input(data)
+    
+    # Sets the input
+    def input(self, data):
+        self.lexer.input(str(data))
 
-    # Get the next token
-    def get_next_token(self):
+    # Returns full token
+    def token(self):
         tok = self.lexer.token()
-
-        if not tok:
-            return None
-        return (tok.type, tok.value)
+        return tok
