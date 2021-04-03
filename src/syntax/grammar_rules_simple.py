@@ -15,9 +15,9 @@ def p_nextLine(p):
 # nextLinePrime
 def p_nextLinePrime_statement(p):
     'nextLinePrime : statement nextLinePrime'
-    p[0] = p[1]
+    p[0] = p[1] 
     if p[2]: 
-        p[0] + [p2]
+        p[0] += p[2]
 
 def p_nextLinePrime_empty(p):
     'nextLinePrime : '
