@@ -10,7 +10,7 @@ class TestStringToken(unittest.TestCase):
         expected_token = [
             "('STRING', 'String')",
             "('ID', 'str')",
-            "('OPERATOR', '=')",
+            "('SET', '=')",
             "('STRING_LITERAL', '\"Hello, World!\"')",
             "('SEMICOLON', ';')"
         ]
@@ -23,7 +23,7 @@ class TestStringToken(unittest.TestCase):
         expected_token = [
             "('STRING', 'String')",
             "('ID', 'str3')",
-            "('OPERATOR', '=')",
+            "('SET', '=')",
             "('ID', 'str1')",
             "('PLUS', '+')",
             "('ID', 'str2')",

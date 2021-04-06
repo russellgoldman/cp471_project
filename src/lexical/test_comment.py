@@ -21,7 +21,7 @@ class TestCommentToken(unittest.TestCase):
         expected_token = [
             "('STRING', 'String')",
             "('ID', 'str')",
-            "('OPERATOR', '=')",
+            "('SET', '=')",
             "('STRING_LITERAL', '\"Above line is skipped\"')",
             "('SEMICOLON', ';')"
         ]
