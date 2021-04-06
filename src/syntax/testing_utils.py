@@ -23,6 +23,7 @@ def get_qtree_representation(node: ASTNode):
     tree_str = get_qtree_rep_aux(node, 1)
     return '\Tree {}'.format(tree_str)
 
+# Documentation for qtree LaTeX standard
 # https://www.ling.upenn.edu/advice/latex/qtree/qtreenotes.pdf
 def get_qtree_rep_aux(node: ASTNode, level):
     VALUE       = 0
@@ -44,6 +45,7 @@ def get_qtree_rep_aux(node: ASTNode, level):
 
         for child in node.children:
             child_str += '\t' * level
+
             if child[SYMBOL_TYPE] == SymbolType.TERMINAL:
                 child_str += '[.{} ]\n'.format(child[VALUE])
             else:
