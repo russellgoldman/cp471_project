@@ -66,5 +66,33 @@ def _get_qtree_rep_aux(node: TreeNode, level):
 
 # Converts a Parse Tree to an Abstract Syntax Tree (AST)
 def convert_parse_to_abstract(node: TreeNode):
-    # todo
-    pass
+    VALUE       = 0
+    SYMBOL_TYPE = 1
+
+    if not(hasattr(node, 'children')):
+        # Leaf, return
+        return node
+    else:
+        if len(node.children) == 1: # 1 child
+            # Take whatever we retrieve
+            newNode = convert_parse_to_abstract(node.children[0][VALUE])
+        if len(node.children) == 2: # 2 children
+            if node.children[0][SYMBOL_TYPE] == SymbolType.TERMINAL:
+                # If left is a terminal, we likely want the right
+                # Take whatever right is - as if it was a single child
+                newNode = convert_parse_to_abstract(node.children[1][VALUE])
+            else: # Left is nonterminal
+                parent = node.type # Current node should remain the parent
+                children = [(convert_parse_to_abstract(node.children[0][VALUE]), node.children[0][SYMBOL_TYPE])]
+                children.append((convert_parse_to_abstract(node.children[1][VALUE]), node.children[1][SYMBOL_TYPE]))
+                # Create the node, assigning the 2 children we retrieved
+                newNode = create_tree_node(parent, children)
+        elif len(node.children) == 3: # 3 children
+            children = [(convert_parse_to_abstract(node.children[0][VALUE]), node.children[0][SYMBOL_TYPE])]
+            children.append((convert_parse_to_abstract(node.children[2][VALUE]), node.children[2][SYMBOL_TYPE]))
+            # Middle child is parent
+            parent = convert_parse_to_abstract(node.children[1][VALUE])
+            parent = terminal_to_type(parent)
+            # Create the node, assigning left and right siblings as children
+            newNode = create_tree_node(parent, children)
+        return newNode
