@@ -24,6 +24,15 @@ class TreeNode:
         self.type = type
         self.children = children
 
+class Terminal:
+    def __init__(self, value):
+        self.value = value
+
+def terminal_value(node: TreeNode):
+    # When converting to AST we sometimes need a terminal to have
+    # a .value attribute
+    return Terminal(node)
+
 def create_tree_node(type: NonTerminal, children: List[Tuple[str, SymbolType]] = None):
     return TreeNode(type, children)
 
@@ -37,8 +46,8 @@ def _get_qtree_rep_aux(node: TreeNode, level):
     VALUE       = 0
     SYMBOL_TYPE = 1
 
-    if node.children == None:
-        return '[.{} ]'.format(node.type.value)
+    if not(hasattr(node, 'children')):
+        return '[.{} ]'.format(node)
     elif len(node.children) == 1:
         child = node.children[0]
 
@@ -92,7 +101,7 @@ def convert_parse_to_abstract(node: TreeNode):
             children.append((convert_parse_to_abstract(node.children[2][VALUE]), node.children[2][SYMBOL_TYPE]))
             # Middle child is parent
             parent = convert_parse_to_abstract(node.children[1][VALUE])
-            parent = terminal_to_type(parent)
+            parent = terminal_value(parent)
             # Create the node, assigning left and right siblings as children
             newNode = create_tree_node(parent, children)
         return newNode
