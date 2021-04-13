@@ -1,13 +1,16 @@
 # https://ply.readthedocs.io/en/latest/ply.html#ast-construction
 # node for a non-terminal (variable) instance in an Abstract Syntax Tree
-import sys, os
-sys.path.append(os.path.abspath(os.path.join('..', 'syntax')))
-from typing import List, Tuple
 import enum
+from typing import List, Tuple
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join('..', 'syntax')))
+
 
 class SymbolType(enum.Enum):
     NONTERMINAL = 'nonterminal'
     TERMINAL = 'terminal'
+
 
 class NonTerminal(enum.Enum):
     PROGRAM = 'program'
@@ -19,22 +22,27 @@ class NonTerminal(enum.Enum):
     VARIABLE_DECLARATION = 'variableDeclaration'
     FACTOR = 'factor'
 
+
 class TreeNode:
     def __init__(self, type, children):
         self.type = type
         self.children = children
 
+
 class Terminal:
     def __init__(self, value):
         self.value = value
+
 
 def terminal_value(node: TreeNode):
     # When converting to AST we sometimes need a terminal to have
     # a .value attribute
     return Terminal(node)
 
+
 def create_tree_node(type: NonTerminal, children: List[Tuple[str, SymbolType]] = None):
     return TreeNode(type, children)
+
 
 def get_qtree_representation(node: TreeNode):
     tree_str = _get_qtree_rep_aux(node, 1)
@@ -42,8 +50,10 @@ def get_qtree_representation(node: TreeNode):
 
 # Documentation for qtree LaTeX standard
 # https://www.ling.upenn.edu/advice/latex/qtree/qtreenotes.pdf
+
+
 def _get_qtree_rep_aux(node: TreeNode, level):
-    VALUE       = 0
+    VALUE = 0
     SYMBOL_TYPE = 1
 
     if not(hasattr(node, 'children')):
@@ -74,31 +84,37 @@ def _get_qtree_rep_aux(node: TreeNode, level):
         return child_str
 
 # Converts a Parse Tree to an Abstract Syntax Tree (AST)
+
+
 def convert_parse_to_abstract(node: TreeNode):
-    VALUE       = 0
+    VALUE = 0
     SYMBOL_TYPE = 1
 
     if not(hasattr(node, 'children')):
         # Leaf, return
         return node
     else:
-        if len(node.children) == 1: # 1 child
+        if len(node.children) == 1:  # 1 child
             # Take whatever we retrieve
             newNode = convert_parse_to_abstract(node.children[0][VALUE])
-        if len(node.children) == 2: # 2 children
+        if len(node.children) == 2:  # 2 children
             if node.children[0][SYMBOL_TYPE] == SymbolType.TERMINAL:
                 # If left is a terminal, we likely want the right
                 # Take whatever right is - as if it was a single child
                 newNode = convert_parse_to_abstract(node.children[1][VALUE])
-            else: # Left is nonterminal
-                parent = node.type # Current node should remain the parent
-                children = [(convert_parse_to_abstract(node.children[0][VALUE]), node.children[0][SYMBOL_TYPE])]
-                children.append((convert_parse_to_abstract(node.children[1][VALUE]), node.children[1][SYMBOL_TYPE]))
+            else:  # Left is nonterminal
+                parent = node.type  # Current node should remain the parent
+                children = [(convert_parse_to_abstract(
+                    node.children[0][VALUE]), node.children[0][SYMBOL_TYPE])]
+                children.append((convert_parse_to_abstract(
+                    node.children[1][VALUE]), node.children[1][SYMBOL_TYPE]))
                 # Create the node, assigning the 2 children we retrieved
                 newNode = create_tree_node(parent, children)
-        elif len(node.children) == 3: # 3 children
-            children = [(convert_parse_to_abstract(node.children[0][VALUE]), node.children[0][SYMBOL_TYPE])]
-            children.append((convert_parse_to_abstract(node.children[2][VALUE]), node.children[2][SYMBOL_TYPE]))
+        elif len(node.children) == 3:  # 3 children
+            children = [(convert_parse_to_abstract(
+                node.children[0][VALUE]), node.children[0][SYMBOL_TYPE])]
+            children.append((convert_parse_to_abstract(
+                node.children[2][VALUE]), node.children[2][SYMBOL_TYPE]))
             # Middle child is parent
             parent = convert_parse_to_abstract(node.children[1][VALUE])
             parent = terminal_value(parent)
