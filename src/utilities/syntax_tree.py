@@ -105,3 +105,7 @@ def convert_parse_to_abstract(node: TreeNode):
             # Create the node, assigning left and right siblings as children
             newNode = create_tree_node(parent, children)
         return newNode
+
+def compare_trees(self, given_tree: TreeNode, expected_qtree: str):
+    given_qtree = get_qtree_representation(given_tree)
+    self.assertEqual(given_qtree, expected_qtree)
