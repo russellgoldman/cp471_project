@@ -1,22 +1,21 @@
 import unittest
 from testing_utils import assert_syntax, assert_ast
 
-# from parser import Parser
-
-# Test lexeme classification for Boolean token
+# Testing correct syntax parsing of Number grammar
 
 
-class TestBoolGrammer(unittest.TestCase):
-    def test_bool_operators(self):
-        source_f = open("./given/bool.ez", "r")
+class TestConditionalGrammar(unittest.TestCase):
+
+    def test_conditional_declaration(self) -> None:
+        source_f = open('./given/conditional.ez', 'r')
         source = source_f.read()
         source_f.close()
 
-        expected_f = open("./expected/bool.txt", "r")
+        expected_f = open('./expected/conditional.txt', 'r')
         expected_syntax = expected_f.read()
         expected_f.close()
 
-        expected_ast_f = open("./expected/bool_ast.txt", "r")
+        expected_ast_f = open('./expected/conditional_ast.txt', 'r')
         expected_ast = expected_ast_f.read()
         expected_ast_f.close()
 
