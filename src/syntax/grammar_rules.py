@@ -68,7 +68,7 @@ def p_expression(p):
 # assignmentExpression
 # --------------------
 def p_assignmentExpression(p):
-    'assignmentExpression : variableDeclaration SET factor'
+    'assignmentExpression : variableDeclaration SET sumExpression'
     p[0] = create_tree_node(NonTerminal.ASSIGNMENT_EXPRESSION, [
         (p[1], SymbolType.NONTERMINAL),
         (p[2], SymbolType.TERMINAL),

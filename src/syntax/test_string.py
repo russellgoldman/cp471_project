@@ -11,7 +11,7 @@ class TestStringGrammar(unittest.TestCase):
         expected = expected_f.read()
         expected_f.close()
 
-        assert_syntax(self, source, expected, True)
+        assert_syntax(self, source, expected)
 
 
 if __name__ == '__main__':

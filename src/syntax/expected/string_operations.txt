@@ -1,7 +1,24 @@
 \Tree [.program [.nextLine [.nextLinePrime [.statement
-	[.expression [.multiplyExpression
-		[.factor [.mutable [.str2 ] ] ]
-		[.None ]
+	[.expression [.assignmentExpression
+		[.variableDeclaration
+			[.String ]
+			[.str3 ]
+		]
+		[.= ]
+		[.sumExpression
+			[.multiplyExpression
+				[.factor [.mutable [.str1 ] ] ]
+				[.None ]
+			]
+			[.sumExpressionPrime
+				[.sumOperator [.+ ] ]
+				[.multiplyExpression
+					[.factor [.mutable [.str2 ] ] ]
+					[.None ]
+				]
+				[.None ]
+			]
+		]
 	] ]
 	[.; ]
 ] ] ] ]
