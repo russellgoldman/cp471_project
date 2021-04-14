@@ -33,6 +33,8 @@ class NonTerminal(enum.Enum):
     CONSTANT = 'constant'
     INPUT_STATEMENT = 'inputStatement'
     IN_STREAM = 'inStream'
+    OUTPUT_STATEMENT = 'outputStatement'
+    OUT_FUNCTION = 'outFunction'
 
 
 class TreeNode:

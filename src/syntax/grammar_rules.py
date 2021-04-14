@@ -41,16 +41,27 @@ def p_nextLinePrime_empty(p):
     'nextLinePrime : '
     pass
 
+# --------------------
 # statement
+# --------------------
 def p_statement_expression(p):
     '''statement : expression SEMICOLON
-                 | inputStatement SEMICOLON'''
+                 | inputStatement SEMICOLON
+                 | outputStatement SEMICOLON'''
     p[0] = create_tree_node(NonTerminal.STATEMENT, [
         (p[1], SymbolType.NONTERMINAL),
         (p[2], SymbolType.TERMINAL)
     ])
     # p[0] = p[1] + p[2]
 
+# --------------------
+# outputStatement
+# --------------------
+def p_outputStatement(p):
+    '''outputStatement : outFunction'''
+    p[0] = create_tree_node(NonTerminal.OUTPUT_STATEMENT, [
+        (p[1], SymbolType.NONTERMINAL)
+    ])
 # --------------------
 # expression
 # --------------------
@@ -178,6 +189,19 @@ def p_inStream(p):
         (p[1], SymbolType.TERMINAL),
         (p[2], SymbolType.TERMINAL),
         (p[3], SymbolType.NONTERMINAL)
+    ])
+
+# --------------------
+# outStream
+# --------------------
+def p_outFunction(p):
+    '''outFunction : PRINT LPAREN ID RPAREN
+                   | PRINT LPAREN STRING_LITERAL RPAREN'''
+    p[0] = create_tree_node(NonTerminal.OUT_FUNCTION, [
+        (p[1], SymbolType.TERMINAL),
+        (p[2], SymbolType.TERMINAL),
+        (p[3], SymbolType.NONTERMINAL),
+        (p[4], SymbolType.TERMINAL)
     ])
 
 # --------------------

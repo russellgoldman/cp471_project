@@ -1,0 +1,9 @@
+\Tree [.program [.nextLine [.nextLinePrime [.statement
+	[.outputStatement [.outFunction
+		[.print ]
+		[.( ]
+		[.str ]
+		[.) ]
+	] ]
+	[.; ]
+] ] ] ]
