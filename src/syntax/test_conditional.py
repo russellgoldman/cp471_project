@@ -1,11 +1,7 @@
 import unittest
 from testing_utils import assert_syntax, assert_ast
 
-# Testing correct syntax parsing of Number grammar
-
-
 class TestConditionalGrammar(unittest.TestCase):
-
     def test_conditional_declaration(self) -> None:
         source_f = open('./given/conditional.ez', 'r')
         source = source_f.read()

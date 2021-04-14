@@ -4,8 +4,6 @@ from testing_utils import assert_syntax
 # from parser import Parser
 
 # Test lexeme classification for Boolean token
-
-
 class TestBoolGrammer(unittest.TestCase):
     def test_bool_operators(self):
         source_f = open("./given/bool.ez", "r")

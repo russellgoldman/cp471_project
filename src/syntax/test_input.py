@@ -1,11 +1,7 @@
 import unittest
 from testing_utils import assert_syntax
 
-# Testing correct syntax parsing of Number grammar
-
-
 class TestInputOutputGrammar(unittest.TestCase):
-
     def test_input_stream(self) -> None:
         source_f = open('./given/input_stream.ez', 'r')
         source = source_f.read()
