@@ -20,6 +20,8 @@ class NonTerminal(enum.Enum):
     EXPRESSION = 'expression'
     ASSIGNMENT_EXPRESSION = 'assignmentExpression'
     ITERATION_EXPRESSION = 'iterationExpression'
+    SUM_EXPRESSION = 'sumExpression'
+    SUM_EXPRESSION_PRIME = 'sumExpressionPrime'
     MULTIPLY_EXPRESSION = 'multiplyExpression'
     MULTIPLY_EXPRESSION_PRIME = 'multiplyExpressionPrime'
     VARIABLE_DECLARATION = 'variableDeclaration'

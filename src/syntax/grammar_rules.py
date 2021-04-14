@@ -56,7 +56,9 @@ def p_statement_expression(p):
 # --------------------
 def p_expression(p):
     '''expression : assignmentExpression
-                  | iterationExpression'''
+                  | iterationExpression
+                  | sumExpression
+                  | multiplyExpression'''
     p[0] = create_tree_node(NonTerminal.EXPRESSION, [
         (p[1], SymbolType.NONTERMINAL)
     ])
@@ -86,6 +88,31 @@ def p_iterationExpression(p):
         (p[4], SymbolType.NONTERMINAL),
         (p[5], SymbolType.NONTERMINAL),
     ])
+
+# --------------------
+# sumExpression
+# --------------------
+def p_sumExpression(p):
+    'sumExpression : multiplyExpression sumExpressionPrime'
+    p[0] = create_tree_node(NonTerminal.SUM_EXPRESSION, [
+        (p[1], SymbolType.NONTERMINAL),
+        (p[2], SymbolType.NONTERMINAL),
+    ])
+
+# --------------------
+# sumExpressionPrime
+# --------------------
+def p_sumExpressionPrime(p):
+    'sumExpressionPrime : sumOperator multiplyExpression sumExpressionPrime'
+    p[0] = create_tree_node(NonTerminal.SUM_EXPRESSION_PRIME, [
+        (p[1], SymbolType.NONTERMINAL),
+        (p[2], SymbolType.NONTERMINAL),
+        (p[3], SymbolType.NONTERMINAL),
+    ])
+
+def p_sumExpressionPrime_empty(p):
+    'sumExpressionPrime : '
+    pass
 
 # --------------------
 # multiplyExpression
@@ -158,7 +185,8 @@ def p_inStream(p):
 # --------------------
 def p_mutable(p):
     '''mutable : NUMBER_LITERAL
-               | inputStatement'''
+               | inputStatement
+               | ID'''
     p[0] = create_tree_node(NonTerminal.MUTABLE, [
         (p[1], SymbolType.TERMINAL)
     ])
@@ -185,7 +213,8 @@ def p_constant(p):
 # variableDeclaration
 def p_variableDeclaration(p):
     '''variableDeclaration : NUMBER ID
-                           | BOOLEAN ID'''
+                           | BOOLEAN ID
+                           | STRING ID'''
     p[0] = create_tree_node(NonTerminal.VARIABLE_DECLARATION, [
         (p[1], SymbolType.TERMINAL),
         (p[2], SymbolType.TERMINAL)
