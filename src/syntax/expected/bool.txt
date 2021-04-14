@@ -1,0 +1,11 @@
+\Tree [.program [.nextLine [.nextLinePrime [.statement
+	[.expression [.assignmentExpression
+		[.variableDeclaration
+			[.Boolean ]
+			[.bool ]
+		]
+		[.= ]
+		[.factor [.immutable [.constant [.True ] ] ] ]
+	] ]
+	[.; ]
+] ] ] ]

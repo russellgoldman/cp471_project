@@ -1,0 +1,17 @@
+\Tree [.program [.nextLine [.nextLinePrime [.statement
+	[.expression [.iterationExpression
+		[.num ]
+		[.= ]
+		[.num ]
+		[.sumOperator [.+ ] ]
+		[.multiplyExpression
+			[.factor [.mutable [.2 ] ] ]
+			[.multiplyExpressionPrime
+				[.multiplyOperator [.* ] ]
+				[.factor [.mutable [.3 ] ] ]
+				[.None ]
+			]
+		]
+	] ]
+	[.; ]
+] ] ] ]

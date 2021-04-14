@@ -16,7 +16,7 @@ test_function:
 	${PYTHON} -m unittest test_function.py -v
 
 test_input:
-	${PYTHON} -m unittest test_input.py -v
+	${PYTHON} -m unittest test_input_output.py -v
 
 test_loops:
 	${PYTHON} -m unittest test_loops.py -v
