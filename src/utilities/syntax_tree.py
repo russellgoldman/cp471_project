@@ -18,6 +18,8 @@ class NonTerminal(enum.Enum):
     NEXT_LINE_PRIME = 'nextLinePrime'
     STATEMENT = 'statement'
     IF_STATEMENT = 'ifStatement'
+    ITERATION_STATEMENT = 'iterationStatement'
+    ITERATION_OPERATOR = 'iterationOperator'
     STATEMENT_BODY = 'statementBody'
     STATEMENT_BODY_EXPRESSION = 'statementBodyExpression'
     ELIF_ELSE_STATEMENT = 'elifElseStatement'

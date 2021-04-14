@@ -47,6 +47,7 @@ def p_nextLinePrime_empty(p):
 def p_statement(p):
     '''statement : expression SEMICOLON
                  | ifStatement
+                 | iterationStatement
                  | inputStatement SEMICOLON
                  | outputStatement SEMICOLON'''
     if len(p) == 3:
@@ -59,6 +60,34 @@ def p_statement(p):
             (p[1], SymbolType.NONTERMINAL)
         ])
     # p[0] = p[1] + p[2]
+
+
+# --------------------
+# statementBody
+# --------------------
+def p_iterationStatement(p):
+    '''iterationStatement : WHILE LPAREN relationExpression RPAREN statementBody
+                          | FOR LPAREN assignmentExpression SEMICOLON relationExpression SEMICOLON iterationExpression RPAREN statementBody'''
+    if len(p) >= 7:
+        p[0] = create_tree_node(NonTerminal.ITERATION_STATEMENT, [
+                (p[1], SymbolType.TERMINAL),
+                (p[2], SymbolType.TERMINAL),
+                (p[3], SymbolType.NONTERMINAL),
+                (p[4], SymbolType.TERMINAL),
+                (p[5], SymbolType.NONTERMINAL),
+                (p[6], SymbolType.TERMINAL),
+                (p[7], SymbolType.NONTERMINAL),
+                (p[8], SymbolType.TERMINAL),
+                (p[9], SymbolType.NONTERMINAL),
+        ])
+    else:
+        p[0] = create_tree_node(NonTerminal.ITERATION_STATEMENT, [
+                (p[1], SymbolType.TERMINAL),
+                (p[2], SymbolType.TERMINAL),
+                (p[3], SymbolType.NONTERMINAL),
+                (p[4], SymbolType.TERMINAL),
+                (p[5], SymbolType.NONTERMINAL),
+        ])
 
 # --------------------
 # outputStatement
@@ -120,7 +149,7 @@ def p_statementBodyExpression_empty(p):
 def p_elifElseStatement(p):
     '''elifElseStatement : ELIF LPAREN relationExpression RPAREN statementBody elifElseStatement
                          | ELSE statementBody'''
-    if len(p) >= 3:
+    if len(p) >= 4:
         if p[6] == None:
             p[0] = create_tree_node(NonTerminal.ELIF_ELSE_STATEMENT, [
                 (p[1], SymbolType.TERMINAL),
@@ -177,13 +206,30 @@ def p_assignmentExpression(p):
 # iterationExpression
 # --------------------
 def p_iterationExpression(p):
-    '''iterationExpression : ID SET ID sumOperator multiplyExpression'''
-    p[0] = create_tree_node(NonTerminal.ITERATION_EXPRESSION, [
-        (p[1], SymbolType.NONTERMINAL),
-        (p[2], SymbolType.TERMINAL),
-        (p[3], SymbolType.NONTERMINAL),
-        (p[4], SymbolType.NONTERMINAL),
-        (p[5], SymbolType.NONTERMINAL),
+    '''iterationExpression : ID SET ID sumOperator multiplyExpression
+                           | ID iterationOperator'''
+    if len(p) >= 4:
+        p[0] = create_tree_node(NonTerminal.ITERATION_EXPRESSION, [
+            (p[1], SymbolType.NONTERMINAL),
+            (p[2], SymbolType.TERMINAL),
+            (p[3], SymbolType.NONTERMINAL),
+            (p[4], SymbolType.NONTERMINAL),
+            (p[5], SymbolType.NONTERMINAL),
+        ])
+    else:
+        p[0] = create_tree_node(NonTerminal.ITERATION_EXPRESSION, [
+            (p[1], SymbolType.NONTERMINAL),
+            (p[2], SymbolType.NONTERMINAL)
+        ])
+
+# --------------------
+# iterationOperator
+# --------------------
+def p_iterationOperator(p):
+    '''iterationOperator : INCREMENT
+                         | DECREMENT'''
+    p[0] = create_tree_node(NonTerminal.ITERATION_OPERATOR, [
+        (p[1], SymbolType.TERMINAL)
     ])
 
 # --------------------
@@ -319,7 +365,7 @@ def p_sumOperator(p):
     ])
 
 # --------------------
-# sumOperator
+# multiplyOperator
 # --------------------
 def p_multiplyOperator(p):
     '''multiplyOperator : MULTIPLY 
