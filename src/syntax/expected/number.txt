@@ -5,7 +5,7 @@
 			[.num ]
 		]
 		[.= ]
-		[.factor [.mutable [.10 ] ] ]
+		[.sumExpression [.multiplyExpression [.factor [.mutable [.10 ] ] ] ] ]
 	] ]
 	[.; ]
 ] ] ] ]

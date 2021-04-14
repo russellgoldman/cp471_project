@@ -5,7 +5,7 @@
 			[.bool ]
 		]
 		[.= ]
-		[.factor [.immutable [.constant [.True ] ] ] ]
+		[.sumExpression [.multiplyExpression [.factor [.immutable [.constant [.True ] ] ] ] ] ]
 	] ]
 	[.; ]
 ] ] ] ]

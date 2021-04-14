@@ -2,60 +2,31 @@
 	[.if ]
 	[.( ]
 	[.relationExpression
-		[.sumExpression
-			[.multiplyExpression
-				[.factor [.mutable [.num ] ] ]
-				[.None ]
-			]
-			[.None ]
-		]
+		[.sumExpression [.multiplyExpression [.factor [.mutable [.num ] ] ] ] ]
 		[.relationExpressionPrime
 			[.relationOperator [.>= ] ]
-			[.sumExpression
-				[.multiplyExpression
-					[.factor [.mutable [.10 ] ] ]
-					[.None ]
-				]
-				[.None ]
-			]
-			[.None ]
+			[.sumExpression [.multiplyExpression [.factor [.mutable [.10 ] ] ] ] ]
 		]
 	]
 	[.) ]
 	[.statementBody
 		[.{ ]
-		[.None ]
 		[.} ]
 	]
 	[.elifElseStatement
 		[.elif ]
 		[.( ]
 		[.relationExpression
-			[.sumExpression
-				[.multiplyExpression
-					[.factor [.mutable [.num ] ] ]
-					[.None ]
-				]
-				[.None ]
-			]
+			[.sumExpression [.multiplyExpression [.factor [.mutable [.num ] ] ] ] ]
 			[.relationExpressionPrime
 				[.relationOperator [.== ] ]
-				[.sumExpression
-					[.multiplyExpression
-						[.factor [.mutable [.5 ] ] ]
-						[.None ]
-					]
-					[.None ]
-				]
-				[.None ]
+				[.sumExpression [.multiplyExpression [.factor [.mutable [.5 ] ] ] ] ]
 			]
 		]
 		[.) ]
 		[.statementBody
 			[.{ ]
-			[.None ]
 			[.} ]
 		]
-		[.None ]
 	]
 ] ] ] ] ]

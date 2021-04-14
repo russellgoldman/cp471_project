@@ -6,17 +6,10 @@
 		]
 		[.= ]
 		[.sumExpression
-			[.multiplyExpression
-				[.factor [.mutable [.str1 ] ] ]
-				[.None ]
-			]
+			[.multiplyExpression [.factor [.mutable [.str1 ] ] ] ]
 			[.sumExpressionPrime
 				[.sumOperator [.+ ] ]
-				[.multiplyExpression
-					[.factor [.mutable [.str2 ] ] ]
-					[.None ]
-				]
-				[.None ]
+				[.multiplyExpression [.factor [.mutable [.str2 ] ] ] ]
 			]
 		]
 	] ]
