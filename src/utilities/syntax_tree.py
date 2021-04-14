@@ -147,7 +147,4 @@ def convert_parse_to_abstract(node: TreeNode):
 
 def compare_trees(self, given_tree: TreeNode, expected_qtree: str):
     given_qtree = get_qtree_representation(given_tree)
-    f = open('out.txt', 'w')
-    f.write(given_qtree)
-    f.close()
     self.assertEqual(given_qtree, expected_qtree)
