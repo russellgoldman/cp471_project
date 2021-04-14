@@ -1,9 +1,6 @@
 import unittest
 from testing_utils import assert_syntax, assert_ast
 
-# Testing correct syntax parsing of Number grammar
-
-
 class TestLoopGrammar(unittest.TestCase):
     def test_for_loop_declaration(self) -> None:
         source_f = open('./given/for_loop.ez', 'r')
