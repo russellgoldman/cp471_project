@@ -1,9 +1,6 @@
 import unittest
 from testing_utils import assert_syntax, assert_ast
 
-# Testing correct syntax parsing of Number grammar
-
-
 class TestFunctionGrammar(unittest.TestCase):
     def test_function_declaration(self) -> None:
         source_f = open('./given/function.ez', 'r')
