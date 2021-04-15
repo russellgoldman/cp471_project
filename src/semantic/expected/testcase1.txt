@@ -1,1 +1,1 @@
-('statement', ('assignmentExpression', '=', 'num', 1), ('whileStatement', ('relationExpression', '<=', 'num', 10), ('assignmentExpression', 'num', '=', ('iterationExpression', '+', 'num', 1))))
+('statement', ('assignmentExpression', '=', 'num', 1), ('whileStatement', ('relationExpression', '<=', 'num', 10), ('assignmentExpression', '=', 'num', ('iterationExpression', '+', 'num', 1))))
