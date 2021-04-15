@@ -126,7 +126,7 @@ def p_expression(p):
 def p_assignmentExpression(p):
     '''assignmentExpression : variableDeclaration SET sumExpression
                             | ID SET sumExpression'''
-    p[0] = (p[2], p[1], p[3])
+    p[0] = ('assignmentExpression', p[2], p[1], p[3])
 
 # --------------------
 # iterationExpression
