@@ -1,0 +1,1 @@
+('statement', ('=', 'num1', 10), ('statement', ('=', 'num2', 5), ('statement', ('=', 'num1', ('sumExpression', '+', 'num1', 'num2')), ('ifStatement', ('relationExpression', '>', 'num1', 14), ('=', 'num2', ('sumExpression', '+', ('multiplyExpression', '/', 10, 2), 1)), ('=', 'num2', ('sumExpression', '+', ('multiplyExpression', '*', 2, 3), 4))))))

@@ -1,0 +1,1 @@
+('statement', ('=', 'number', 0), ('forStatement', ('forExpression', ('=', 'i', 0), ';'), ('=', 'number', ('sumExpression', '+', 'number', 'i'))))
