@@ -84,3 +84,31 @@ s.set_symbol(name, 'int')
 s.set_value(name, 3.01)
 print(s.get_entry(name).symbol)
 print(s.get_entry(name).value)
+
+
+"""
+Number number = 0;
+for(Number i = 0; i < 10; i++) {
+    number = number + i;
+
+    if (i > 5) {
+        Number n = 5
+    }
+
+    number = number + n         //  Semantic Analysis returns an error
+                                    n is not defined
+}
+
+
+0:
+Symbol      Type        Scope
+number      Number      Global
+
+|                                 |
+
+1:
+Symbol      Type        Scope           Symbol      Type        Scope
+i           Number      For             n           Number      If
+
+
+"""
