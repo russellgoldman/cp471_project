@@ -138,9 +138,9 @@ def p_iterationExpression(p):
         p[0] = ('iterationExpression', p[2], p[1], p[3])
     else:
         if str(p[2]) == '++':
-            p[0] = ('assignmentExpression', p[1], '=', ('iterationExpression', '+', p[1], 1))
+            p[0] = ('assignmentExpression', '=', p[1], ('iterationExpression', '+', p[1], 1))
         else:
-            p[0] = ('assignmentExpression', p[1], '=', ('iterationExpression', '-', p[1], 1))
+            p[0] = ('assignmentExpression', '=', p[1], ('iterationExpression', '-', p[1], 1))
 
 
 # --------------------
