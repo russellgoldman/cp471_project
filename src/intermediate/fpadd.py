@@ -33,4 +33,7 @@ def run_assembly():
 
     return res
 
-print(run_assembly())
+# def jinja_generate():
+#     tac = [
+#         ()
+#     ]
