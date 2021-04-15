@@ -83,9 +83,12 @@ def p_statementBody(p):
 # statementBodyExpression
 # --------------------
 def p_statementBodyExpression(p):
-    '''statementBodyExpression : statement
-                               | expression'''
-    p[0] = p[1]
+    '''statementBodyExpression : statement statementBodyExpression
+                               | statement'''
+    if len(p) >= 3: 
+        p[0] = ('statementBodyExpression', p[1], p[2])
+    else:
+        p[0] = p[1]
 
 def p_statementBodyExpression_empty(p):
     'statementBodyExpression : '
