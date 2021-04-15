@@ -1,0 +1,6 @@
+Function add = (Number num1, Number num2)
+-> (Number) {
+return (
+num1 + num2
+);
+}

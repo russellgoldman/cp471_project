@@ -1,11 +1,11 @@
 \Tree [.program [.nextLine [.nextLinePrime [.statement
 	[.expression [.assignmentExpression
 		[.variableDeclaration
-			[.Number ]
-			[.num ]
+			[.Boolean ]
+			[.bool ]
 		]
 		[.= ]
-		[.sumExpression [.multiplyExpression [.factor [.mutable [.10 ] ] ] ] ]
+		[.sumExpression [.multiplyExpression [.factor [.immutable [.constant [.True ] ] ] ] ] ]
 	] ]
 	[.; ]
 ] ] ] ]

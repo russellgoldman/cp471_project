@@ -1,17 +1,15 @@
 import sys, os
-import unittest
-sys.path.append(os.path.abspath(os.path.join('..', 'syntax')))
-from ez_parser import Parser
 sys.path.append(os.path.abspath(os.path.join('..', 'utilities')))
-from syntax_tree import TreeNode, convert_parse_to_abstract, compare_trees
 
-def assert_ast(self, source, expected_abstract, debug=False):
+import unittest
+from ez_parser import Parser
+from syntax_tree import TreeNode, compare_trees
+
+def assert_syntax(self, source, expected_syntax, debug=False):
     # build parser
     p = Parser()
     p.build()
     # generate parse tree
     given_tree = p.parse(source, debug)
-    # convert to abstract
-    given_ast = convert_parse_to_abstract(given_tree)
-    # check that the ast is correct
-    compare_trees(self, given_ast, expected_abstract)
+    # check that the syntax is correct
+    compare_trees(self, given_tree, expected_syntax)

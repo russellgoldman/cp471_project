@@ -1,0 +1,32 @@
+\Tree [.program [.nextLine [.nextLinePrime [.statement [.ifStatement
+	[.if ]
+	[.( ]
+	[.relationExpression
+		[.sumExpression [.multiplyExpression [.factor [.mutable [.num ] ] ] ] ]
+		[.relationExpressionPrime
+			[.relationOperator [.>= ] ]
+			[.sumExpression [.multiplyExpression [.factor [.mutable [.10 ] ] ] ] ]
+		]
+	]
+	[.) ]
+	[.statementBody
+		[.{ ]
+		[.} ]
+	]
+	[.elifElseStatement
+		[.elif ]
+		[.( ]
+		[.relationExpression
+			[.sumExpression [.multiplyExpression [.factor [.mutable [.num ] ] ] ] ]
+			[.relationExpressionPrime
+				[.relationOperator [.== ] ]
+				[.sumExpression [.multiplyExpression [.factor [.mutable [.5 ] ] ] ] ]
+			]
+		]
+		[.) ]
+		[.statementBody
+			[.{ ]
+			[.} ]
+		]
+	]
+] ] ] ] ]
