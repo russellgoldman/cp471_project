@@ -1,8 +1,0 @@
-\Tree [.program [.nextLine [.nextLinePrime [.statement
-	[.inputStatement [.inStream
-		[.in ]
-		[.>> ]
-		[.str ]
-	] ]
-	[.; ]
-] ] ] ]
