@@ -10,7 +10,7 @@ class TestCase2(unittest.TestCase):
         source = source_f.read()
         source_f.close()
 
-        expected_f = open('./expected/testcase3.txt', 'r')
+        expected_f = open('./expected/testcase2.txt', 'r')
         expected = expected_f.read()
         expected_f.close()
 

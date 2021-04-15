@@ -19,7 +19,6 @@ class TestCase2(unittest.TestCase):
         p.build()
         # generate parse tree
         given_tree = p.parse(source)
-        print(given_tree)
         self.assertEqual(str(given_tree), expected)
 
 if __name__ == '__main__':
