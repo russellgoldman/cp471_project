@@ -1,0 +1,6 @@
+Number number = 0;
+for(Number i = 0; i < 10; i++) {
+    number = number + i;
+    number = 3;
+    number = 5;
+}

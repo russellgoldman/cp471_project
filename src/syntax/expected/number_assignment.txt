@@ -9,7 +9,6 @@
 			[.multiplyExpressionPrime
 				[.multiplyOperator [.* ] ]
 				[.factor [.mutable [.3 ] ] ]
-				[.None ]
 			]
 		]
 	] ]

@@ -1,0 +1,1 @@
+('statement', ('assignmentExpression', '=', 'num1', 5), ('ifStatement', ('relationExpression', '>', 'num1', 6), ('assignmentExpression', '=', 'num1', ('sumExpression', '+', 2, 1)), None))

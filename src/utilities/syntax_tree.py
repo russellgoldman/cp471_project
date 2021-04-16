@@ -18,6 +18,8 @@ class NonTerminal(enum.Enum):
     NEXT_LINE_PRIME = 'nextLinePrime'
     STATEMENT = 'statement'
     IF_STATEMENT = 'ifStatement'
+    ITERATION_STATEMENT = 'iterationStatement'
+    ITERATION_OPERATOR = 'iterationOperator'
     STATEMENT_BODY = 'statementBody'
     STATEMENT_BODY_EXPRESSION = 'statementBodyExpression'
     ELIF_ELSE_STATEMENT = 'elifElseStatement'
@@ -145,7 +147,4 @@ def convert_parse_to_abstract(node: TreeNode):
 
 def compare_trees(self, given_tree: TreeNode, expected_qtree: str):
     given_qtree = get_qtree_representation(given_tree)
-    f = open('out.txt', 'w')
-    f.write(given_qtree)
-    f.close()
     self.assertEqual(given_qtree, expected_qtree)

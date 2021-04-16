@@ -1,0 +1,14 @@
+num1 = 10
+num2 = 5
+t1 = num1 + num2
+num1 = t1
+if num1 > 14 goto L1
+goto L2
+L1: t2 = 10 / 2
+t3 = t2 + 1
+num2 = t3 
+goto L3 
+L2: t4 = 2 * 3
+t5 = t4 + 4
+num2 = t5 
+L3:
