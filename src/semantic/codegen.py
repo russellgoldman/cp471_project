@@ -2,7 +2,7 @@ import unittest
 import sys, os
 sys.path.append(os.path.abspath(os.path.join('..', 'utilities')))
 from ez_parser import Parser
-from icecream import ic
+
 
 
 
@@ -21,7 +21,8 @@ def main():
     # generate parse tree
     given_tree = p.parse(source)
     #print(given_tree)
-    print(traverse(given_tree))
+    f = open('./codegen/out.txt', 'w')
+    f.write(traverse(given_tree))
 
 
 def traverse(given_tree):
