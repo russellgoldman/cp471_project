@@ -11,7 +11,7 @@ def main():
     global incrementL
     incrementT = 0
     incrementL = 0
-    source_f = open('./given/testcase1.ez', 'r')
+    source_f = open('./given/testcase3.ez', 'r')
     source = source_f.read()
     source_f.close()
 
@@ -46,16 +46,15 @@ def traverse(given_tree):
         m = traverse(given_tree[2])
         r = traverse(given_tree[3])
         if not r:
+            # Build the output
             incrementL += 1
-            part1 = 'if {} goto L{}\n'.format(l, incrementL)
+            first = incrementL
+            part1 = 'if {} goto L{}\n'.format(l, first)
             incrementL += 1
-            part2 = 'goto L{}\n'.format(incrementL)
-            incrementL += 1
-            part3 = 'L{}: {} \n'.format(incrementL, m)
-            incrementL += 1
-            part4 = 'L{}: '.format(incrementL)
-            return '{}{}{}{}'.format(part1,part2,part3,part4)
+            second = incrementL
+            part2 = 'goto L{}\nL{}: {} \nL{}: '.format(second, first, m, second)
         else:
+            # Build the output
             incrementL += 1
             first = incrementL
             part1 = 'if {} goto L{}\n'.format(l, first)
@@ -99,7 +98,15 @@ def traverse(given_tree):
     elif given_tree[0] == 'whileStatement':
         l = traverse(given_tree[1])
         r = traverse(given_tree[2])
-        return 'while {} goto L2\ngoto L3\nL2: {} \nL3: '.format(l,r)
+
+        # Build the output
+        incrementL += 1
+        first = incrementL
+        part1 = 'if {} goto L{}\n'.format(l, first)
+        incrementL += 1
+        second = incrementL
+        part2 = 'goto L{}\nL{}: {} \nL{}: '.format(second, first, r, second)
+        return '{}{}'.format(part1, part2)
     elif given_tree[0] == 'forExpression':
         l = traverse(given_tree[1])
         r = traverse(given_tree[2])
@@ -107,7 +114,19 @@ def traverse(given_tree):
     elif given_tree[0] == 'forStatement':
         l = traverse(given_tree[1])
         r = traverse(given_tree[2])
-        return '{} \nL1: if {} goto L2\ngoto L3\nL2: {} \n  {} \ngoto L1\nL3:'.format(l[0],l[1][0],r,l[1][1])
+
+        # Build the output. Messy, but necessary
+        incrementL += 1
+        first = incrementL
+        part1 = '{} \nL{}: '.format(l[0], first)
+        incrementL += 1
+        second = incrementL
+        part2 = 'if {} goto L{}\n'.format(l[1][0], second)
+        incrementL += 1
+        third = incrementL
+        part3 = 'goto L{}\n'.format(third)
+        part4 = 'L{}: {} \n  {} \ngoto L{}\nL{}:'.format(second, r, l[1][1], first, third)
+        return '{}{}{}{}'.format(part1,part2,part3,part4)
     elif given_tree[0] == 'statementBodyExpression':
         l = traverse(given_tree[1])
         r = traverse(given_tree[2])
