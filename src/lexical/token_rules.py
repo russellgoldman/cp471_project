@@ -11,9 +11,14 @@ elif_count = 0
 else_count = 0
 for_count = 0
 while_count = 0
+number_count = 0
+string_count = 0
+boolean_count = 0
 function_count = 0
-
-prev = ''
+object_count = 0
+prepare_new_scope = False
+new_scope = False
+prev_tok = None
 
 # --------------------
 # Reserved Keywords
@@ -96,46 +101,71 @@ def t_ID(t):
     # Check if ID is a reserved word
     global current_scope, current_node
     global if_count, elif_count, else_count
-    global for_count, while_count, function_count, prev
-    changes = True
+    global for_count, while_count
+    global number_count, string_count, boolean_count, function_count
+    global prepare_new_scope, new_scope, prev_tok
 
     # If
     if t.value == 'if':
         if_count += 1
         current_scope = 'if_{}'.format(if_count)
+        new_scope = True
     # Elif
     elif t.value == 'elif':
         elif_count += 1
         current_scope = 'elif_{}'.format(elif_count)
+        new_scope = True
     # Else
     elif t.value == 'else':
         else_count += 1
         current_scope = 'else_{}'.format(else_count)
+        new_scope = True
     # For
     elif t.value == 'for':
         for_count += 1
         current_scope = 'for_{}'.format(for_count)
+        new_scope = True
     # While
     elif t.value == 'while':
         while_count += 1
         current_scope = 'while_{}'.format(while_count)
+        new_scope = True
+    # Number
+    elif t.value == 'Number':
+        prev_tok = t.value
+    # String
+    elif t.value == 'String':
+        prev_tok = t.value
+    # Boolean
+    elif t.value == 'Boolean':
+        prev_tok = t.value
     # Function
     elif t.value == 'Function':
         function_count += 1
-        prev = t
-    elif prev == 'Function':
+        prev_tok = t.value
+    elif prev_tok == 'Function':
         current_scope = 'function_{}'.format(function_count)
-        return t
-    else:
-        changes = False
+        prepare_new_scope = True
+    # Object
+    elif t.value == 'Object':
+        object_count += 1
+        prev_tok = t.value
+    elif prev_tok == 'Object':
+        current_scope = 'object_{}'.format(object_count)
 
-    if changes:
+    if new_scope:
         current_node = symbol_table.create_node(current_scope, current_node)
+        new_scope = False
+    if prepare_new_scope:
+        prepare_new_scope = False
+        new_scope = True
     
     t.type = reserved.get(t.value, 'ID')
     if t.type == 'ID':
         # add ID to current scope of symbol table
-        current_node.add_record(t.value)
+        if prev_tok != None:
+            current_node.add_record(t.value, prev_tok)
+        prev_tok = None
 
     return t
 
