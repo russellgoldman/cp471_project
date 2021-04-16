@@ -2,7 +2,10 @@ import unittest
 import sys, os
 sys.path.append(os.path.abspath(os.path.join('..', 'utilities')))
 from ez_parser import Parser
+<<<<<<< HEAD
 
+=======
+>>>>>>> 84335038d2a315f05be364bd693d745e5bf47dea
 
 
 
