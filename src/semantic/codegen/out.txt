@@ -1,12 +1,6 @@
-number = 0
-i = 0 
-L1: if i < 10 goto L2
-goto L3
-L2: t2 = number + i
-number = t2
-number = 3
-number = 5 
-  t1 = i + 1
-i = t1 
-goto L1
-L3:
+num = 1
+if num <= 10 goto L1
+goto L2
+L1: t1 = num + 1
+num = t1 
+L2: 

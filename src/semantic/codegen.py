@@ -2,10 +2,6 @@ import unittest
 import sys, os
 sys.path.append(os.path.abspath(os.path.join('..', 'utilities')))
 from ez_parser import Parser
-<<<<<<< HEAD
-
-=======
->>>>>>> 84335038d2a315f05be364bd693d745e5bf47dea
 
 
 
@@ -14,7 +10,7 @@ def main():
     global incrementL
     incrementT = 0
     incrementL = 0
-    source_f = open('./given/testcase3.ez', 'r')
+    source_f = open('./given/testcase1.ez', 'r')
     source = source_f.read()
     source_f.close()
 
