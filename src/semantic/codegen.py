@@ -48,22 +48,19 @@ def traverse(given_tree):
         if not r:
             # Build the output
             incrementL += 1
-            first = incrementL
-            part1 = 'if {} goto L{}\n'.format(l, first)
+            firstLabel = incrementL
             incrementL += 1
-            second = incrementL
-            part2 = 'goto L{}\nL{}: {} \nL{}: '.format(second, first, m, second)
+            secondLabel = incrementL
+            return 'if {} goto L{}\ngoto L{}\nL{}: {} \nL{}: '.format(l, firstLabel, secondLabel, firstLabel, m, secondLabel)
         else:
             # Build the output
             incrementL += 1
-            first = incrementL
-            part1 = 'if {} goto L{}\n'.format(l, first)
+            firstLabel = incrementL
             incrementL += 1
-            second = incrementL
-            part2 = 'goto L{}\nL{}: {} \n'.format(second, first, m)
-            third = incrementL + 1
-            part3 = 'goto L{} \nL{}: {} \nL{}:'.format(third,second,r,third)
-            return '{}{}{}'.format(part1,part2,part3)
+            secondLabel = incrementL
+            incrementL += 1
+            thirdLabel = incrementL
+            return 'if {} goto L{}\ngoto L{}\nL{}: {} \ngoto L{} \nL{}: {} \nL{}:'.format(l, firstLabel, secondLabel, firstLabel, m, thirdLabel,secondLabel,r,thirdLabel)
     elif given_tree[0] == 'relationExpression':
         l = traverse(given_tree[2])
         r = traverse(given_tree[3])
@@ -101,12 +98,10 @@ def traverse(given_tree):
 
         # Build the output
         incrementL += 1
-        first = incrementL
-        part1 = 'if {} goto L{}\n'.format(l, first)
+        firstLabel = incrementL
         incrementL += 1
-        second = incrementL
-        part2 = 'goto L{}\nL{}: {} \nL{}: '.format(second, first, r, second)
-        return '{}{}'.format(part1, part2)
+        secondLabel = incrementL
+        return 'if {} goto L{}\ngoto L{}\nL{}: {} \nL{}: '.format(l, firstLabel, secondLabel, firstLabel, r, secondLabel)
     elif given_tree[0] == 'forExpression':
         l = traverse(given_tree[1])
         r = traverse(given_tree[2])
@@ -117,16 +112,12 @@ def traverse(given_tree):
 
         # Build the output. Messy, but necessary
         incrementL += 1
-        first = incrementL
-        part1 = '{} \nL{}: '.format(l[0], first)
+        firstLabel = incrementL
         incrementL += 1
-        second = incrementL
-        part2 = 'if {} goto L{}\n'.format(l[1][0], second)
+        secondLabel = incrementL
         incrementL += 1
-        third = incrementL
-        part3 = 'goto L{}\n'.format(third)
-        part4 = 'L{}: {} \n  {} \ngoto L{}\nL{}:'.format(second, r, l[1][1], first, third)
-        return '{}{}{}{}'.format(part1,part2,part3,part4)
+        thirdLabel = incrementL
+        return '{} \nL{}: if {} goto L{}\ngoto L{}\nL{}: {} \n  {} \ngoto L{}\nL{}:'.format(l[0], firstLabel, l[1][0], secondLabel, thirdLabel, secondLabel, r, l[1][1], firstLabel, thirdLabel)
     elif given_tree[0] == 'statementBodyExpression':
         l = traverse(given_tree[1])
         r = traverse(given_tree[2])
