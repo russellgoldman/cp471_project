@@ -2,7 +2,6 @@ import unittest
 import sys, os
 sys.path.append(os.path.abspath(os.path.join('..', 'utilities')))
 from ez_parser import Parser
-from icecream import ic
 
 
 
