@@ -6,7 +6,7 @@ from ez_parser import Parser
 
 
 def main():
-    source_f = open('./given/testcase3.ez', 'r')
+    source_f = open('./given/testcase1.ez', 'r')
     source = source_f.read()
     source_f.close()
 
@@ -24,7 +24,7 @@ def traverse(given_tree):
     elif given_tree[0] == 'statement':
         l = traverse(given_tree[1])
         r = traverse(given_tree[2])
-        return '\n{}\n{}\n'.format(l,r)
+        return '{}\n{}'.format(l,r)
     elif given_tree[0] == 'assignmentExpression':
         l = traverse(given_tree[2])
         r = traverse(given_tree[3])
@@ -52,7 +52,7 @@ def traverse(given_tree):
     elif given_tree[0] == 'whileStatement':
         l = traverse(given_tree[1])
         r = traverse(given_tree[2])
-        return 'while {} goto L2\ngoto L3\nL2: {} \nL3: '.format(l,r)
+        return 'if {} goto L2\ngoto L3\nL2: {} \nL3: '.format(l,r)
     elif given_tree[0] == 'forExpression':
         l = traverse(given_tree[1])
         r = traverse(given_tree[2])
