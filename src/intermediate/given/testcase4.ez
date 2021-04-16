@@ -1,0 +1,4 @@
+Number num1 = 5;
+if(num1 > 6) {
+    num1 = 2 + 1;
+}
