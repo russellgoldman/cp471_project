@@ -1,5 +1,6 @@
 import unittest
-from lexer import Lexer
+from lexical.lexer import Lexer
+from utilities.symbol_table_v2 import symbol_table
 
 def assert_each_token(self, source, expected_token, print_token=False):
     l = Lexer()
@@ -24,5 +25,3 @@ def assert_each_token(self, source, expected_token, print_token=False):
 
     # check if number of identified tokens is less than the correct amount
     self.assertEqual(token_num, len(expected_token), "Identified tokens are less than the correct amount")
-
-    

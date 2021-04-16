@@ -8,13 +8,6 @@ class SymbolTable:
                 self.symbol:        str     = symbol
                 self.symbol_type:   str     = symbol_type
                 self.node:          str     = node
-            
-            # def print_str(self):
-            #     out = ''
-            #     out += 'symbol: {}\n'.format(self.symbol)
-            #     out += 'symbol_type: {}\n'.format(self.symbol_type)
-            #     out += 'scope: {}\n'.format(self.scope)
-            #     print(out)
 
         # Node initialization
         def __init__(self, scope: str, parent=None):
@@ -29,10 +22,10 @@ class SymbolTable:
         def add_record(self, symbol: str, symbol_type: str=None):
             self.records[symbol] = self.Record(symbol, symbol_type, self)
 
-        def add_child(self, scope: str, child):
+        def _add_child(self, scope: str, child):
             self.children[scope] = child
 
-        def add_parent(self, parent):
+        def _add_parent(self, parent):
             self.parent = parent
 
         def modify_record(self, symbol: str, symbol_type: str=None, scope: str=None):
@@ -43,26 +36,25 @@ class SymbolTable:
 
     # SymbolTable methods
     def __init__(self):
-        self.root:  Node        = self.Node('global')
-        self.scopes: Dict       = {}
-        self.scopes['global']   = self.root
+        self.root:  Node                    = self.Node('global')
+        self.scopes: Dict[str, self.Node]   = {}
+        self.scopes['global']               = self.root
 
     def create_node(self, scope: str, parent=None):
         node = self.Node(scope, parent)
         if parent != None:
-            parent.add_child(scope, node)
-            node.add_parent(parent)
+            parent._add_child(scope, node)
+            node._add_parent(parent)
         self.scopes[scope] = node
         return node
 
-    def get_node_by_scope(self, scope: str):
+    def get_node_by_scope(self, scope: str) -> Node:
         return self.scopes[scope]
 
     def print_node(self, out: str, current: Node):
         out += '  Node: {}\n'.format(current.scope)
         if current.parent != None:
             out += '  Parent: {}\n'.format(current.parent.scope)
-        
         out += ' {}\n'.format('-' * 47)
         
         # iterate through all records in the current node
@@ -104,19 +96,21 @@ class SymbolTable:
 
 
 # Create Symbol Table
-s = SymbolTable()
-# Get the root global node in the table
-global_node = s.get_node_by_scope('global')
+symbol_table = SymbolTable()
 
-global_node.add_record('number', None)
-for_1_node = s.create_node('for_1', global_node)
-if_1_node = s.create_node('if_1', global_node)
+# TESTING
+# # Get the root global node in the table
+# global_node = s.get_node_by_scope('global')
 
-for_1_node.add_record('i', None)
-if_1_node.add_record('i', None)
-if_1_node.add_record('n', 'Number')
+# global_node.add_record('number', None)
+# for_1_node = s.create_node('for_1', global_node)
+# if_1_node = s.create_node('if_1', global_node)
 
-if_2_node = s.create_node('if_2', for_1_node)
-if_2_node.add_record('s', 'String')
+# for_1_node.add_record('i', None)
+# if_1_node.add_record('i', None)
+# if_1_node.add_record('n', 'Number')
 
-print(s)
+# if_2_node = s.create_node('if_2', for_1_node)
+# if_2_node.add_record('s', 'String')
+
+# print(s)
