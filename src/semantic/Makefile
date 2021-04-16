@@ -9,11 +9,11 @@ test_bool:
 test_comment:
 	${PYTHON} -m unittest test_comment.py -v
 
-test_conditional:
-	${PYTHON} -m unittest test_conditional.py -v
+test_conditionals:
+	${PYTHON} -m unittest test_conditionals.py -v
 
 test_function:
-	${PYTHON} -m unittest test_functions.py -v
+	${PYTHON} -m unittest test_function.py -v
 
 test_input:
 	${PYTHON} -m unittest test_input.py -v

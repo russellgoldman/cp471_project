@@ -1,1 +1,0 @@
-# Called from Parser with source data, returns next token when requested

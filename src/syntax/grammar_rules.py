@@ -1,210 +1,370 @@
 import sys, os
 sys.path.append(os.path.abspath(os.path.join('..', 'lexical')))
-print(sys.path)
-import token_rules
+sys.path.append(os.path.abspath(os.path.join('..', 'utilities')))
+from token_rules import tokens
+from syntax_tree import SymbolType, NonTerminal, create_tree_node
 
 # program
 def p_program_nextLine(p):
     'program : nextLine'
-    p[0] = p[1]
-
-def p_program_empty(p):
-    'program : '
-    p[0] = None
-
+    p[0] = create_tree_node(NonTerminal.PROGRAM, [
+        (p[1], SymbolType.NONTERMINAL)
+    ])
+    # p[0] = p[1]
 
 # nextLine
 def p_nextLine(p):
-    'nextLine: nextLinePrime'
-    p[0] = p[1]
-
+    'nextLine : nextLinePrime'
+    p[0] = create_tree_node(NonTerminal.NEXT_LINE, [
+        (p[1], SymbolType.NONTERMINAL)
+    ])
+    # p[0] = p[1]
 
 # nextLinePrime
 def p_nextLinePrime_statement(p):
     'nextLinePrime : statement nextLinePrime'
-    p[0] = p[1] + p[2]
+    if p[2]:
+        p[0] = create_tree_node(NonTerminal.NEXT_LINE_PRIME, [
+            (p[1], SymbolType.NONTERMINAL),
+            (p[2], SymbolType.NONTERMINAL)
+        ])
+    else:
+        p[0] = create_tree_node(NonTerminal.NEXT_LINE_PRIME, [
+            (p[1], SymbolType.NONTERMINAL)
+        ])
 
-def p_nextLinePrime_functionDefinition(p):
-    'nextLinePrime : functionDefinition nextLinePrime'
-    p[0] = p[1] + p[2]
-
-def p_nextLinePrime_comment(p):
-    'nextLinePrime : comment nextLinePrime'
-    p[0] = p[1] + p[2]    
-
-def p_nextLinePrime_import(p):
-    'nextLinePrime : import nextLinePrime'
-    p[0] = p[1] + p[2]
+    # p[0] = p[1]
+    # if p[2]: 
+    #     p[0] += p[2]
 
 def p_nextLinePrime_empty(p):
     'nextLinePrime : '
-    p[0] = None
+    pass
 
-
+# --------------------
 # statement
-def p_statement_expression(p):
-    'statement : expression'
-    p[0] = p[1]
+# --------------------
+def p_statement(p):
+    '''statement : expression SEMICOLON
+                 | ifStatement
+                 | inputStatement SEMICOLON
+                 | outputStatement SEMICOLON'''
+    if len(p) == 3:
+        p[0] = create_tree_node(NonTerminal.STATEMENT, [
+            (p[1], SymbolType.NONTERMINAL),
+            (p[2], SymbolType.TERMINAL)
+        ])
+    else:
+        p[0] = create_tree_node(NonTerminal.STATEMENT, [
+            (p[1], SymbolType.NONTERMINAL)
+        ])
+    # p[0] = p[1] + p[2]
 
-def p_statement_ifStatement(p):
-    'statement : ifStatement'
-    p[0] = p[1]
+# --------------------
+# outputStatement
+# --------------------
+def p_outputStatement(p):
+    '''outputStatement : outFunction'''
+    p[0] = create_tree_node(NonTerminal.OUTPUT_STATEMENT, [
+        (p[1], SymbolType.NONTERMINAL)
+    ])
 
-def p_statement_iterationStatement(p):
-    'statement : iterationStatement'
-    p[0] = p[1]
-
-def p_statement_returnStatement(p):
-    'statement : returnStatement'
-    p[0] = p[1]
-
-
-# expression
-def p_expression_iterationExpression(p):
-    'expression : iterationExpression'
-    p[0] = p[1]
-
-def p_expression_assignmentExpression(p):
-    'expression : assignmentExpression'
-    p[0] = p[1]
-
-def p_expression_relationExpression(p):
-    'expression : relationExpression'
-    p[0] = p[1]
-
-def p_expression_sumExpression(p):
-    'expression : sumExpression'
-    p[0] = p[1]
-
-def p_expression_multiplyExpression(p):
-    'expression : multiplyExpression'
-    p[0] = p[1]
-
-
-# returnStatement
-def p_returnStatement_return(p):
-    'returnStatement : return returnExpression'
-    p[0] = + p[2]
-
-
-# returnExpression
-def p_returnExpression_relationExpression(p):
-    'returnExpression : relationExpression'
-    p[0] = p[1]
-
-def p_returnExpression_sumExpression(p):
-    'returnExpression : sumExpression'
-    p[0] = p[1]
-
-def p_returnExpression_multiplyExpression(p):
-    'returnExpression : multiplyExpression'
-    p[0] = p[1]
-
-
+# --------------------
 # ifStatement
+# --------------------
 def p_ifStatement(p):
-    'ifStatement : if LPARAMS relationExpression RPARAMS statementBody elifElseStatement'
-    p[0] = p[5]
+    'ifStatement : IF LPAREN relationExpression RPAREN statementBody elifElseStatement'
+    p[0] = create_tree_node(NonTerminal.IF_STATEMENT, [
+        (p[1], SymbolType.TERMINAL),
+        (p[2], SymbolType.TERMINAL),
+        (p[3], SymbolType.NONTERMINAL),
+        (p[4], SymbolType.TERMINAL),
+        (p[5], SymbolType.NONTERMINAL),
+        (p[6], SymbolType.NONTERMINAL)
+    ])
 
+# --------------------
+# statementBody
+# --------------------
+def p_statementBody(p):
+    'statementBody : LCURLY statementBodyExpression RCURLY'
+    p[0] = create_tree_node(NonTerminal.STATEMENT_BODY, [
+        (p[1], SymbolType.TERMINAL),
+        (p[2], SymbolType.NONTERMINAL),
+        (p[3], SymbolType.TERMINAL)
+    ])
 
+# --------------------
+# statementBodyExpression
+# --------------------
+def p_statementBodyExpression(p):
+    '''statementBodyExpression : statement
+                               | expression'''
+    p[0] = create_tree_node(NonTerminal.STATEMENT_BODY_EXPRESSION, [
+        (p[1], SymbolType.NONTERMINAL)
+    ])
+
+def p_statementBodyExpression_empty(p):
+    'statementBodyExpression : '
+    pass
+
+# --------------------
 # elifElseStatement
-def p_elifElseStatement_elif(p):
-    'elifElseStatement : elif LPARAMS relationExpression RPARAMS statementBody elifElseStatement'
-    p[0] = p[5]
-
-def p_elifElseStatement_else(p):
-    'elifElseStatement : else statementBody'
-    p[0] = p[2]
+# --------------------
+def p_elifElseStatement(p):
+    '''elifElseStatement : ELIF LPAREN relationExpression RPAREN statementBody elifElseStatement
+                         | ELSE statementBody'''
+    if p[3]:
+        p[0] = create_tree_node(NonTerminal.ELIF_ELSE_STATEMENT, [
+            (p[1], SymbolType.TERMINAL),
+            (p[2], SymbolType.TERMINAL),
+            (p[3], SymbolType.NONTERMINAL),
+            (p[4], SymbolType.TERMINAL),
+            (p[5], SymbolType.NONTERMINAL),
+            (p[6], SymbolType.NONTERMINAL),
+        ])
+    else:
+        p[0] = create_tree_node(NonTerminal.ELIF_ELSE_STATEMENT, [
+            (p[1], SymbolType.TERMINAL),
+            (p[2], SymbolType.NONTERMINAL)
+        ])
 
 def p_elifElseStatement_empty(p):
     'elifElseStatement : '
-    p[0] = None
+    pass
 
+# --------------------
+# expression
+# --------------------
+def p_expression(p):
+    '''expression : assignmentExpression
+                  | iterationExpression
+                  | sumExpression
+                  | multiplyExpression'''
+    p[0] = create_tree_node(NonTerminal.EXPRESSION, [
+        (p[1], SymbolType.NONTERMINAL)
+    ])
+    # p[0] = p[1]
 
-# statementBody
-def p_statementBody(p):
-    'statementBody : LCURLY statementBodyExpression RCURLY'
-    p[0] = p[2]
-
-
-# statementBodyExpression
-def p_statementBodyExpression_statement(p):
-    'statementBodyExpression : statement'
-    p[0] = p[1]
-
-def p_statementBodyExpression_expression(p):
-    'statementBodyExpression : expression'
-    p[0] = p[1]
-
-def p_statementBodyExpression_outputStatement(p):
-    'statementBodyExpression : outputStatement'
-    p[0] = p[1]
-
-
-# iterationStatement
-def p_iterationStatement_while(p):
-    'iterationStatement : while LPARAMS relationExpression statementBody'
-    p[0] = p[1]
-
-def p_iterationStatement_for(p):
-    'iterationStatement : for LPARAMS variableDeclaration SET NUMBER_LITERAL SEMICOLON relationExpression SEMICOLON iterationExpression RPARAMS statementBody'
-
-# iterationExpression
-def p_iterationExpression_set(p):
-    'iterationExpression : ID SET ID operator multiplyExpression'
-
-def p_iterationExpression_incDec(p):
-    'iterationExpression : ID iterationOperator'
-
-
-# iterationOperator
-def p_iterationOperator_increment(p):
-    'iterationOperator : INCREMENT'
-    p[0] = p[0] + 1
-
-def p_iterationOperator_decrement(p):
-    'iterationOperator : DECREMENT'
-    p[0] = p[0] - 1
-
-
+# --------------------
 # assignmentExpression
+# --------------------
 def p_assignmentExpression(p):
-    'assignmentExpression : variableDeclaration SET factor'
+    'assignmentExpression : variableDeclaration SET sumExpression'
+    p[0] = create_tree_node(NonTerminal.ASSIGNMENT_EXPRESSION, [
+        (p[1], SymbolType.NONTERMINAL),
+        (p[2], SymbolType.TERMINAL),
+        (p[3], SymbolType.NONTERMINAL),
+    ])
+    # p[0] = p[1] + p[2] + p[3]
 
+# --------------------
+# iterationExpression
+# --------------------
+def p_iterationExpression(p):
+    '''iterationExpression : ID SET ID sumOperator multiplyExpression'''
+    p[0] = create_tree_node(NonTerminal.ITERATION_EXPRESSION, [
+        (p[1], SymbolType.NONTERMINAL),
+        (p[2], SymbolType.TERMINAL),
+        (p[3], SymbolType.NONTERMINAL),
+        (p[4], SymbolType.NONTERMINAL),
+        (p[5], SymbolType.NONTERMINAL),
+    ])
 
+# --------------------
 # relationExpression
+# --------------------
 def p_relationExpression(p):
     'relationExpression : sumExpression relationExpressionPrime'
+    p[0] = create_tree_node(NonTerminal.RELATION_EXPRESSION, [
+        (p[1], SymbolType.NONTERMINAL),
+        (p[2], SymbolType.NONTERMINAL),
+    ])
 
-
+# --------------------
 # relationExpressionPrime
-def p_relationExpressionPrime_relation(p):
+# --------------------
+def p_relationExpressionPrime(p):
     'relationExpressionPrime : relationOperator sumExpression relationExpressionPrime'
+    p[0] = create_tree_node(NonTerminal.RELATION_EXPRESSION_PRIME, [
+        (p[1], SymbolType.NONTERMINAL),
+        (p[2], SymbolType.NONTERMINAL),
+        (p[3], SymbolType.NONTERMINAL)
+    ])
 
 def p_relationExpressionPrime_empty(p):
     'relationExpressionPrime : '
-    p[0] = None
+    pass
 
-
+# --------------------
 # relationOperator
-def p_relationOperator_equal(p):
-    'relationOperator : EQUAL'
+# --------------------
+def p_relationOperator(p):
+    '''relationOperator : EQUAL
+                        | LESS_EQUAL
+                        | GREATER_EQUAL
+                        | NOT_EQUAL
+                        | GREATER
+                        | LESS'''
+    p[0] = create_tree_node(NonTerminal.RELATION_OPERATOR, [
+        (p[1], SymbolType.TERMINAL)
+    ])
 
-def p_relationOperator_less_equal(p):
-    'relationOperator : LESS_EQUAL'
-
-def p_relationOperator_greater_equal(p):
-    'relationOperator : GREATER_EQUAL'
-
-def p_relationOperator_not_equal(p):
-    'relationOperator : NOT_EQUAL'
-
-def p_relationOperator_less(p):
-    'relationOperator : LESS'
-
-def p_relationOperator_greater(p):
-    'relationOperator : GREATER'
-
-
+# --------------------
 # sumExpression
-# TODO
+# --------------------
+def p_sumExpression(p):
+    'sumExpression : multiplyExpression sumExpressionPrime'
+    p[0] = create_tree_node(NonTerminal.SUM_EXPRESSION, [
+        (p[1], SymbolType.NONTERMINAL),
+        (p[2], SymbolType.NONTERMINAL),
+    ])
+
+# --------------------
+# sumExpressionPrime
+# --------------------
+def p_sumExpressionPrime(p):
+    'sumExpressionPrime : sumOperator multiplyExpression sumExpressionPrime'
+    p[0] = create_tree_node(NonTerminal.SUM_EXPRESSION_PRIME, [
+        (p[1], SymbolType.NONTERMINAL),
+        (p[2], SymbolType.NONTERMINAL),
+        (p[3], SymbolType.NONTERMINAL),
+    ])
+
+def p_sumExpressionPrime_empty(p):
+    'sumExpressionPrime : '
+    pass
+
+# --------------------
+# multiplyExpression
+# --------------------
+def p_multiplyExpression(p):
+    'multiplyExpression : factor multiplyExpressionPrime'
+    p[0] = create_tree_node(NonTerminal.MULTIPLY_EXPRESSION, [
+        (p[1], SymbolType.NONTERMINAL),
+        (p[2], SymbolType.NONTERMINAL),
+    ])
+
+# --------------------
+# multiplyExpressionPrime
+# --------------------
+def p_multiplyExpressionPrime(p):
+    'multiplyExpressionPrime : multiplyOperator factor multiplyExpressionPrime'
+    p[0] = create_tree_node(NonTerminal.MULTIPLY_EXPRESSION_PRIME, [
+        (p[1], SymbolType.NONTERMINAL),
+        (p[2], SymbolType.NONTERMINAL),
+        (p[3], SymbolType.NONTERMINAL),
+    ])
+
+def p_multiplyExpressionPrime_empty(p):
+    'multiplyExpressionPrime : '
+    pass
+
+# --------------------
+# sumOperator
+# --------------------
+def p_sumOperator(p):
+    '''sumOperator : PLUS
+                   | MINUS'''
+    p[0] = create_tree_node(NonTerminal.SUM_OPERATOR, [
+        (p[1], SymbolType.TERMINAL)
+    ])
+
+# --------------------
+# sumOperator
+# --------------------
+def p_multiplyOperator(p):
+    '''multiplyOperator : MULTIPLY 
+                        | DIVIDE
+                        | MODULUS'''
+    p[0] = create_tree_node(NonTerminal.MULTIPLY_OPERATOR, [
+        (p[1], SymbolType.TERMINAL)
+    ])
+
+# --------------------
+# inputStatement
+# --------------------
+def p_inputStatement(p):
+    '''inputStatement : inStream'''
+    p[0] = create_tree_node(NonTerminal.INPUT_STATEMENT, [
+        (p[1], SymbolType.NONTERMINAL)
+    ])
+
+# --------------------
+# inStream
+# --------------------
+def p_inStream(p):
+    'inStream : IN IN_PIPE ID'
+    p[0] = create_tree_node(NonTerminal.IN_STREAM, [
+        (p[1], SymbolType.TERMINAL),
+        (p[2], SymbolType.TERMINAL),
+        (p[3], SymbolType.NONTERMINAL)
+    ])
+
+# --------------------
+# outStream
+# --------------------
+def p_outFunction(p):
+    '''outFunction : PRINT LPAREN ID RPAREN
+                   | PRINT LPAREN STRING_LITERAL RPAREN'''
+    p[0] = create_tree_node(NonTerminal.OUT_FUNCTION, [
+        (p[1], SymbolType.TERMINAL),
+        (p[2], SymbolType.TERMINAL),
+        (p[3], SymbolType.NONTERMINAL),
+        (p[4], SymbolType.TERMINAL)
+    ])
+
+# --------------------
+# mutable
+# --------------------
+def p_mutable(p):
+    '''mutable : NUMBER_LITERAL
+               | inputStatement
+               | ID'''
+    p[0] = create_tree_node(NonTerminal.MUTABLE, [
+        (p[1], SymbolType.TERMINAL)
+    ])
+
+# --------------------
+# immutable
+# --------------------
+def p_immutable(p):
+    '''immutable : constant'''
+    p[0] = create_tree_node(NonTerminal.IMMUTABLE, [
+        (p[1], SymbolType.NONTERMINAL)
+    ])
+
+# --------------------
+# constant
+# --------------------
+def p_constant(p):
+    '''constant : TRUE 
+                | FALSE'''
+    p[0] = create_tree_node(NonTerminal.CONSTANT, [
+        (p[1], SymbolType.TERMINAL)
+    ])
+
+# variableDeclaration
+def p_variableDeclaration(p):
+    '''variableDeclaration : NUMBER ID
+                           | BOOLEAN ID
+                           | STRING ID'''
+    p[0] = create_tree_node(NonTerminal.VARIABLE_DECLARATION, [
+        (p[1], SymbolType.TERMINAL),
+        (p[2], SymbolType.TERMINAL)
+    ])
+    # p[0] = p[1] + p[2]
+
+# factor
+def p_factor(p):
+    '''factor : mutable
+              | immutable'''
+    p[0] = create_tree_node(NonTerminal.FACTOR, [
+        (p[1], SymbolType.NONTERMINAL)
+    ])
+    # p[0] = str(p[1])
+
+# error
+def p_error(p):
+    if p:
+        print("Syntax error at token {0} -> {1}".format(p.type, p.value)) 

@@ -1,6 +1,6 @@
 # Ref: https://ply.readthedocs.io/en/latest/ply.html
 import ply.yacc as yacc
-import grammar_rules_simple as grammar_rules
+import grammar_rules
 from lexer import Lexer
 
 class Parser(object):
