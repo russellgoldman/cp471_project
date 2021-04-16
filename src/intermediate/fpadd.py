@@ -42,8 +42,8 @@ def generate_assembly():
     i_ptr = builder.add(i, ir.Constant(int, 1), 'b')
 
     # decide whether to loop again
-    builder.cbranch(builder.icmp_signed('<', i_ptr, j_ptr), while_body_block, while_after_block)
-    builder.position_at_start(while_after_block)
+    # builder.cbranch(builder.icmp_signed('<', i_ptr, j_ptr), while_body_block, while_after_block)
+    # builder.position_at_start(while_after_block)
         
     builder.ret_void()
     # print(str(module))
