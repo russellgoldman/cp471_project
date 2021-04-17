@@ -1,11 +1,14 @@
     LD r0, 1
     ST num, r0
-    BLE r0, 10, L1 #line(5)
-    JMP L2
-(5) L1:   
     LD r0, num
-    add r0, r0, 1
+    LD r1, 10
+    BLE r0, r1, L1
+    JMP L2
+L1:   
+    LD r0, num
+    LD r1, 1
+    ADD r0, r0, r1
     ST t1, r0
     LD r0, t1
     ST num, r0
-(10)L2: 
+L2: 

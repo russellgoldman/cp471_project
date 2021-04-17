@@ -16,6 +16,7 @@ def codegen(source):
     currentRegister = 0 
     assembly = ""
     lineNumber = 0
+    labelCount = 1
     label = []
     variable = []
     dictionary = {}
@@ -27,41 +28,51 @@ def codegen(source):
                 if  word[0] == "L"  and ":" not in word :
                     label.append(word)
                 elif word != 'goto' and word != 'if' and word not in variable and ":" not in word :
-                    variable.append(word)
-                    assembly += "LD r{}, {}\n".format(registerCount, word)
-                    dictionary[registerCount] = word                    
-                    registerCount += 1
-        #print(line)    
+                    variable.append(word)  
         if "if" in line:
+            shift = 0
+            if ":" in split[0]:
+                shift += 1
+                assembly += "{}\n".format(split[0])
+            assembly += "LD r{}, {}\n".format(currentRegister,split[1+shift])
             if ">" in line:
                 assembly += "BGT r0, r1,"            #"BGT r0, r1,"  
             elif "<=" in line:
-                assembly += "BLE r0, r1,"            #"BLE r0, r1," 
+                assembly += "LD r{}, {}\n".format(currentRegister+1,split[3+shift])
+                assembly += "BLE r{}, r{}, {}\n".format(currentRegister,currentRegister+1,split[5+shift])            #"BLE r0, r1," 
             elif "<" in line:
                 assembly += "BGT r1, r0,"            #"BGT r1, r0,"
             elif ">=" in line:
                 assembly += "BLE r1, r0,"            #"BLE r1, r0," 
             elif "==" in line:
                 assembly += "BGT r0, r1,"            #"BGT r0, r1,"
-                assembly += "BGT r1, r0,"            #"BGT r1, r0,"
-            if "goto" in line:
-                assembly += " L1\n"
+                assembly += "BGT r1, r0,"            #"BGT r1, r0,"    
+            # if "goto" in line:
+            #     assembly += " L1\n"
         elif "=" in line:
+            shift = 0
+            if ":" in split[0]:
+                shift += 1
+                assembly += "{}\n".format(split[0])
+            assembly += "LD r{}, {}\n".format(currentRegister,split[2+shift])   
             if "+" in line:
-                assembly += "ADD r0, r0, r1\n"      #"ADD r0, r0, r1\n" 
+                assembly += "LD r{}, {}\n".format(currentRegister+1,split[4+shift])
+                assembly += "ADD r{}, r{}, r{}\n".format(currentRegister,currentRegister,currentRegister+1)      #"ADD r0, r0, r1\n" 
             elif "-" in line:
-                assembly += "SUB r0, r0, r1\n"      #"SUB r0, r0, r1\n"
+                assembly += "LD r{}, {}\n".format(currentRegister+1,split[4+shift])
+                assembly += "SUB r{}, r{}, r{}\n".format(currentRegister,currentRegister,currentRegister+1)        #"SUB r0, r0, r1\n"
             elif "*" in line:
-                assembly += "DIV r0, r0, r1\n"      #"DIV r0, r0, r1\n"
+                assembly += "LD r{}, {}\n".format(currentRegister+1,split[4+shift])
+                assembly += "MUL r{}, r{}, r{}\n".format(currentRegister,currentRegister,currentRegister+1)        #"DIV r0, r0, r1\n"
             elif "/" in line:
-                assembly += "MUL r0, r0, r1\n"      #"MUL r0, r0, r1\n"
-            else:
-                assembly += "ST a, r1\n"            #"ST a, r1\n" 
+                assembly += "LD r{}, {}\n".format(currentRegister+1,split[4+shift])
+                assembly += "DIV r{}, r{}, r{}\n".format(currentRegister,currentRegister,currentRegister+1)        #"MUL r0, r0, r1\n"                      
+            assembly += "ST {}, r{}\n".format(split[0+shift],currentRegister)            #"ST a, r1\n"      
         elif "goto" in line:
-            assembly += "JMP L1\n"                  #"JMP L1\n"
-        lineNumber += 1
-    print(dictionary)
-    #print(label)
+            assembly += "JMP {}\n".format(split[1])                  #"JMP L1\n"
+        elif ":" in line:
+            assembly += "{}\n".format(split[0])
+
     return assembly
 
 
