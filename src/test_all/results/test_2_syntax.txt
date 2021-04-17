@@ -1,0 +1,611 @@
+PLY: PARSE DEBUG START
+
+State  : 0
+Stack  : . LexToken(NUMBER,'Number',1,0)
+Action : Shift and goto state 19
+
+State  : 19
+Stack  : NUMBER . LexToken(ID,'num1',1,7)
+Action : Shift and goto state 53
+
+State  : 53
+Defaulted state 53: Reduce using 53
+Stack  : NUMBER ID . None
+Action : Reduce rule [variableDeclaration -> NUMBER ID] with ['Number','num1'] and goto state 16
+Result : <str @ 0x2347942e230> ('num1')
+
+State  : 16
+Stack  : variableDeclaration . LexToken(SET,'=',1,12)
+Action : Shift and goto state 44
+
+State  : 44
+Stack  : variableDeclaration SET . LexToken(NUMBER_LITERAL,10,1,14)
+Action : Shift and goto state 24
+
+State  : 24
+Stack  : variableDeclaration SET NUMBER_LITERAL . LexToken(SEMICOLON,';',1,16)
+Action : Reduce rule [mutable -> NUMBER_LITERAL] with [10] and goto state 22
+Result : <int @ 0x7ffad1bc17c0> (10)
+
+State  : 22
+Stack  : variableDeclaration SET mutable . LexToken(SEMICOLON,';',1,16)
+Action : Reduce rule [factor -> mutable] with [10] and goto state 18
+Result : <int @ 0x7ffad1bc17c0> (10)
+
+State  : 18
+Stack  : variableDeclaration SET factor . LexToken(SEMICOLON,';',1,16)
+Action : Reduce rule [multiplyExpression -> factor] with [10] and goto state 60
+Result : <int @ 0x7ffad1bc17c0> (10)
+
+State  : 60
+Stack  : variableDeclaration SET multiplyExpression . LexToken(SEMICOLON,';',1,16)
+Action : Reduce rule [sumExpression -> multiplyExpression] with [10] and goto state 66
+Result : <int @ 0x7ffad1bc17c0> (10)
+
+State  : 66
+Stack  : variableDeclaration SET sumExpression . LexToken(SEMICOLON,';',1,16)
+Action : Reduce rule [assignmentExpression -> variableDeclaration SET sumExpression] with ['num1','=',10] and goto state 8
+Result : <tuple @ 0x23479416900> (('assignmentExpression', '=', 'num1', 10 ...)
+
+State  : 8
+Stack  : assignmentExpression . LexToken(SEMICOLON,';',1,16)
+Action : Reduce rule [expression -> assignmentExpression] with [<tuple @ 0x23479416900>] and goto state 5
+Result : <tuple @ 0x23479416900> (('assignmentExpression', '=', 'num1', 10 ...)
+
+State  : 5
+Stack  : expression . LexToken(SEMICOLON,';',1,16)
+Action : Shift and goto state 29
+
+State  : 29
+Stack  : expression SEMICOLON . LexToken(NUMBER,'Number',1,18)
+Action : Reduce rule [statement -> expression SEMICOLON] with [<tuple @ 0x23479416900>,';'] and goto state 4
+Result : <tuple @ 0x23479416900> (('assignmentExpression', '=', 'num1', 10 ...)
+
+State  : 4
+Stack  : statement . LexToken(NUMBER,'Number',1,18)
+Action : Shift and goto state 19
+
+State  : 19
+Stack  : statement NUMBER . LexToken(ID,'num2',1,25)
+Action : Shift and goto state 53
+
+State  : 53
+Defaulted state 53: Reduce using 53
+Stack  : statement NUMBER ID . None
+Action : Reduce rule [variableDeclaration -> NUMBER ID] with ['Number','num2'] and goto state 16
+Result : <str @ 0x2347942bf70> ('num2')
+
+State  : 16
+Stack  : statement variableDeclaration . LexToken(SET,'=',1,30)
+Action : Shift and goto state 44
+
+State  : 44
+Stack  : statement variableDeclaration SET . LexToken(NUMBER_LITERAL,5,1,32)
+Action : Shift and goto state 24
+
+State  : 24
+Stack  : statement variableDeclaration SET NUMBER_LITERAL . LexToken(SEMICOLON,';',1,33)
+Action : Reduce rule [mutable -> NUMBER_LITERAL] with [5] and goto state 22
+Result : <int @ 0x7ffad1bc1720> (5)
+
+State  : 22
+Stack  : statement variableDeclaration SET mutable . LexToken(SEMICOLON,';',1,33)
+Action : Reduce rule [factor -> mutable] with [5] and goto state 18
+Result : <int @ 0x7ffad1bc1720> (5)
+
+State  : 18
+Stack  : statement variableDeclaration SET factor . LexToken(SEMICOLON,';',1,33)
+Action : Reduce rule [multiplyExpression -> factor] with [5] and goto state 60
+Result : <int @ 0x7ffad1bc1720> (5)
+
+State  : 60
+Stack  : statement variableDeclaration SET multiplyExpression . LexToken(SEMICOLON,';',1,33)
+Action : Reduce rule [sumExpression -> multiplyExpression] with [5] and goto state 66
+Result : <int @ 0x7ffad1bc1720> (5)
+
+State  : 66
+Stack  : statement variableDeclaration SET sumExpression . LexToken(SEMICOLON,';',1,33)
+Action : Reduce rule [assignmentExpression -> variableDeclaration SET sumExpression] with ['num2','=',5] and goto state 8
+Result : <tuple @ 0x23479416cc0> (('assignmentExpression', '=', 'num2', 5))
+
+State  : 8
+Stack  : statement assignmentExpression . LexToken(SEMICOLON,';',1,33)
+Action : Reduce rule [expression -> assignmentExpression] with [<tuple @ 0x23479416cc0>] and goto state 5
+Result : <tuple @ 0x23479416cc0> (('assignmentExpression', '=', 'num2', 5))
+
+State  : 5
+Stack  : statement expression . LexToken(SEMICOLON,';',1,33)
+Action : Shift and goto state 29
+
+State  : 29
+Stack  : statement expression SEMICOLON . LexToken(ID,'num1',1,35)
+Action : Reduce rule [statement -> expression SEMICOLON] with [<tuple @ 0x23479416cc0>,';'] and goto state 4
+Result : <tuple @ 0x23479416cc0> (('assignmentExpression', '=', 'num2', 5))
+
+State  : 4
+Stack  : statement statement . LexToken(ID,'num1',1,35)
+Action : Shift and goto state 17
+
+State  : 17
+Stack  : statement statement ID . LexToken(SET,'=',1,40)
+Action : Shift and goto state 45
+
+State  : 45
+Stack  : statement statement ID SET . LexToken(ID,'num1',1,42)
+Action : Shift and goto state 57
+
+State  : 57
+Stack  : statement statement ID SET ID . LexToken(PLUS,'+',1,47)
+Action : Reduce rule [mutable -> ID] with ['num1'] and goto state 22
+Result : <str @ 0x2347942bef0> ('num1')
+
+State  : 22
+Stack  : statement statement ID SET mutable . LexToken(PLUS,'+',1,47)
+Action : Reduce rule [factor -> mutable] with ['num1'] and goto state 18
+Result : <str @ 0x2347942bef0> ('num1')
+
+State  : 18
+Stack  : statement statement ID SET factor . LexToken(PLUS,'+',1,47)
+Action : Reduce rule [multiplyExpression -> factor] with ['num1'] and goto state 60
+Result : <str @ 0x2347942bef0> ('num1')
+
+State  : 60
+Stack  : statement statement ID SET multiplyExpression . LexToken(PLUS,'+',1,47)
+Action : Shift and goto state 31
+
+State  : 31
+Stack  : statement statement ID SET multiplyExpression PLUS . LexToken(ID,'num2',1,49)
+Action : Reduce rule [sumOperator -> PLUS] with ['+'] and goto state 40
+Result : <str @ 0x234775e5f30> ('+')
+
+State  : 40
+Stack  : statement statement ID SET multiplyExpression sumOperator . LexToken(ID,'num2',1,49)
+Action : Shift and goto state 57
+
+State  : 57
+Stack  : statement statement ID SET multiplyExpression sumOperator ID . LexToken(SEMICOLON,';',1,53)
+Action : Reduce rule [mutable -> ID] with ['num2'] and goto state 22
+Result : <str @ 0x2347942bdf0> ('num2')
+
+State  : 22
+Stack  : statement statement ID SET multiplyExpression sumOperator mutable . LexToken(SEMICOLON,';',1,53)
+Action : Reduce rule [factor -> mutable] with ['num2'] and goto state 18
+Result : <str @ 0x2347942bdf0> ('num2')
+
+State  : 18
+Stack  : statement statement ID SET multiplyExpression sumOperator factor . LexToken(SEMICOLON,';',1,53)
+Action : Reduce rule [multiplyExpression -> factor] with ['num2'] and goto state 60
+Result : <str @ 0x2347942bdf0> ('num2')
+
+State  : 60
+Stack  : statement statement ID SET multiplyExpression sumOperator multiplyExpression . LexToken(SEMICOLON,';',1,53)
+Action : Reduce rule [sumExpression -> multiplyExpression] with ['num2'] and goto state 61
+Result : <str @ 0x2347942bdf0> ('num2')
+
+State  : 61
+Stack  : statement statement ID SET multiplyExpression sumOperator sumExpression . LexToken(SEMICOLON,';',1,53)
+Action : Reduce rule [sumExpression -> multiplyExpression sumOperator sumExpression] with ['num1','+','num2'] and goto state 67
+Result : <tuple @ 0x23479416d10> (('sumExpression', '+', 'num1', 'num2'))
+
+State  : 67
+Stack  : statement statement ID SET sumExpression . LexToken(SEMICOLON,';',1,53)
+Action : Reduce rule [assignmentExpression -> ID SET sumExpression] with ['num1','=',<tuple @ 0x23479416d10>] and goto state 8
+Result : <tuple @ 0x234794168b0> (('assignmentExpression', '=', 'num1', (' ...)
+
+State  : 8
+Stack  : statement statement assignmentExpression . LexToken(SEMICOLON,';',1,53)
+Action : Reduce rule [expression -> assignmentExpression] with [<tuple @ 0x234794168b0>] and goto state 5
+Result : <tuple @ 0x234794168b0> (('assignmentExpression', '=', 'num1', (' ...)
+
+State  : 5
+Stack  : statement statement expression . LexToken(SEMICOLON,';',1,53)
+Action : Shift and goto state 29
+
+State  : 29
+Stack  : statement statement expression SEMICOLON . LexToken(IF,'if',1,55)
+Action : Reduce rule [statement -> expression SEMICOLON] with [<tuple @ 0x234794168b0>,';'] and goto state 4
+Result : <tuple @ 0x234794168b0> (('assignmentExpression', '=', 'num1', (' ...)
+
+State  : 4
+Stack  : statement statement statement . LexToken(IF,'if',1,55)
+Action : Shift and goto state 13
+
+State  : 13
+Stack  : statement statement statement IF . LexToken(LPAREN,'(',1,57)
+Action : Shift and goto state 41
+
+State  : 41
+Stack  : statement statement statement IF LPAREN . LexToken(ID,'num1',1,58)
+Action : Shift and goto state 57
+
+State  : 57
+Stack  : statement statement statement IF LPAREN ID . LexToken(GREATER,'>',1,63)
+Action : Reduce rule [mutable -> ID] with ['num1'] and goto state 22
+Result : <str @ 0x2347942e0b0> ('num1')
+
+State  : 22
+Stack  : statement statement statement IF LPAREN mutable . LexToken(GREATER,'>',1,63)
+Action : Reduce rule [factor -> mutable] with ['num1'] and goto state 18
+Result : <str @ 0x2347942e0b0> ('num1')
+
+State  : 18
+Stack  : statement statement statement IF LPAREN factor . LexToken(GREATER,'>',1,63)
+Action : Reduce rule [multiplyExpression -> factor] with ['num1'] and goto state 60
+Result : <str @ 0x2347942e0b0> ('num1')
+
+State  : 60
+Stack  : statement statement statement IF LPAREN multiplyExpression . LexToken(GREATER,'>',1,63)
+Action : Reduce rule [sumExpression -> multiplyExpression] with ['num1'] and goto state 58
+Result : <str @ 0x2347942e0b0> ('num1')
+
+State  : 58
+Stack  : statement statement statement IF LPAREN sumExpression . LexToken(GREATER,'>',1,63)
+Action : Shift and goto state 38
+
+State  : 38
+Stack  : statement statement statement IF LPAREN sumExpression GREATER . LexToken(NUMBER_LITERAL,14,1,65)
+Action : Reduce rule [relationOperator -> GREATER] with ['>'] and goto state 33
+Result : <str @ 0x234775e9030> ('>')
+
+State  : 33
+Stack  : statement statement statement IF LPAREN sumExpression relationOperator . LexToken(NUMBER_LITERAL,14,1,65)
+Action : Shift and goto state 24
+
+State  : 24
+Stack  : statement statement statement IF LPAREN sumExpression relationOperator NUMBER_LITERAL . LexToken(RPAREN,')',1,67)
+Action : Reduce rule [mutable -> NUMBER_LITERAL] with [14] and goto state 22
+Result : <int @ 0x7ffad1bc1840> (14)
+
+State  : 22
+Stack  : statement statement statement IF LPAREN sumExpression relationOperator mutable . LexToken(RPAREN,')',1,67)
+Action : Reduce rule [factor -> mutable] with [14] and goto state 18
+Result : <int @ 0x7ffad1bc1840> (14)
+
+State  : 18
+Stack  : statement statement statement IF LPAREN sumExpression relationOperator factor . LexToken(RPAREN,')',1,67)
+Action : Reduce rule [multiplyExpression -> factor] with [14] and goto state 60
+Result : <int @ 0x7ffad1bc1840> (14)
+
+State  : 60
+Stack  : statement statement statement IF LPAREN sumExpression relationOperator multiplyExpression . LexToken(RPAREN,')',1,67)
+Action : Reduce rule [sumExpression -> multiplyExpression] with [14] and goto state 58
+Result : <int @ 0x7ffad1bc1840> (14)
+
+State  : 58
+Stack  : statement statement statement IF LPAREN sumExpression relationOperator sumExpression . LexToken(RPAREN,')',1,67)
+Action : Reduce rule [relationExpression -> sumExpression] with [14] and goto state 59
+Result : <int @ 0x7ffad1bc1840> (14)
+
+State  : 59
+Stack  : statement statement statement IF LPAREN sumExpression relationOperator relationExpression . LexToken(RPAREN,')',1,67)
+Action : Reduce rule [relationExpression -> sumExpression relationOperator relationExpression] with ['num1','>',14] and goto state 62
+Result : <tuple @ 0x23479416360> (('relationExpression', '>', 'num1', 14))
+
+State  : 62
+Stack  : statement statement statement IF LPAREN relationExpression . LexToken(RPAREN,')',1,67)
+Action : Shift and goto state 69
+
+State  : 69
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN . LexToken(LCURLY,'{',1,69)
+Action : Shift and goto state 74
+
+State  : 74
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY . LexToken(ID,'num2',1,75)
+Action : Shift and goto state 17
+
+State  : 17
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID . LexToken(SET,'=',1,80)
+Action : Shift and goto state 45
+
+State  : 45
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET . LexToken(NUMBER_LITERAL,10,1,82)
+Action : Shift and goto state 24
+
+State  : 24
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET NUMBER_LITERAL . LexToken(DIVIDE,'/',1,85)
+Action : Reduce rule [mutable -> NUMBER_LITERAL] with [10] and goto state 22
+Result : <int @ 0x7ffad1bc17c0> (10)
+
+State  : 22
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET mutable . LexToken(DIVIDE,'/',1,85)
+Action : Reduce rule [factor -> mutable] with [10] and goto state 18
+Result : <int @ 0x7ffad1bc17c0> (10)
+
+State  : 18
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET factor . LexToken(DIVIDE,'/',1,85)
+Action : Shift and goto state 51
+
+State  : 51
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET factor DIVIDE . LexToken(NUMBER_LITERAL,2,1,87)
+Action : Reduce rule [multiplyOperator -> DIVIDE] with ['/'] and goto state 49
+Result : <str @ 0x2347711e230> ('/')
+
+State  : 49
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET factor multiplyOperator . LexToken(NUMBER_LITERAL,2,1,87)
+Action : Shift and goto state 24
+
+State  : 24
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET factor multiplyOperator NUMBER_LITERAL . LexToken(PLUS,'+',1,89)
+Action : Reduce rule [mutable -> NUMBER_LITERAL] with [2] and goto state 22
+Result : <int @ 0x7ffad1bc16c0> (2)
+
+State  : 22
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET factor multiplyOperator mutable . LexToken(PLUS,'+',1,89)
+Action : Reduce rule [factor -> mutable] with [2] and goto state 18
+Result : <int @ 0x7ffad1bc16c0> (2)
+
+State  : 18
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET factor multiplyOperator factor . LexToken(PLUS,'+',1,89)
+Action : Reduce rule [multiplyExpression -> factor] with [2] and goto state 68
+Result : <int @ 0x7ffad1bc16c0> (2)
+
+State  : 68
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET factor multiplyOperator multiplyExpression . LexToken(PLUS,'+',1,89)
+Action : Reduce rule [multiplyExpression -> factor multiplyOperator multiplyExpression] with [10,'/',2] and goto state 60
+Result : <tuple @ 0x234794163b0> (('multiplyExpression', '/', 10, 2))
+
+State  : 60
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET multiplyExpression . LexToken(PLUS,'+',1,89)
+Action : Shift and goto state 31
+
+State  : 31
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET multiplyExpression PLUS . LexToken(NUMBER_LITERAL,1,1,91)
+Action : Reduce rule [sumOperator -> PLUS] with ['+'] and goto state 40
+Result : <str @ 0x234775e5f30> ('+')
+
+State  : 40
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET multiplyExpression sumOperator . LexToken(NUMBER_LITERAL,1,1,91)
+Action : Shift and goto state 24
+
+State  : 24
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET multiplyExpression sumOperator NUMBER_LITERAL . LexToken(SEMICOLON,';',1,92)
+Action : Reduce rule [mutable -> NUMBER_LITERAL] with [1] and goto state 22
+Result : <int @ 0x7ffad1bc16a0> (1)
+
+State  : 22
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET multiplyExpression sumOperator mutable . LexToken(SEMICOLON,';',1,92)
+Action : Reduce rule [factor -> mutable] with [1] and goto state 18
+Result : <int @ 0x7ffad1bc16a0> (1)
+
+State  : 18
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET multiplyExpression sumOperator factor . LexToken(SEMICOLON,';',1,92)
+Action : Reduce rule [multiplyExpression -> factor] with [1] and goto state 60
+Result : <int @ 0x7ffad1bc16a0> (1)
+
+State  : 60
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET multiplyExpression sumOperator multiplyExpression . LexToken(SEMICOLON,';',1,92)
+Action : Reduce rule [sumExpression -> multiplyExpression] with [1] and goto state 61
+Result : <int @ 0x7ffad1bc16a0> (1)
+
+State  : 61
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET multiplyExpression sumOperator sumExpression . LexToken(SEMICOLON,';',1,92)
+Action : Reduce rule [sumExpression -> multiplyExpression sumOperator sumExpression] with [<tuple @ 0x234794163b0>,'+',1] and goto state 67
+Result : <tuple @ 0x23479416c70> (('sumExpression', '+', ('multiplyExpress ...)
+
+State  : 67
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY ID SET sumExpression . LexToken(SEMICOLON,';',1,92)
+Action : Reduce rule [assignmentExpression -> ID SET sumExpression] with ['num2','=',<tuple @ 0x23479416c70>] and goto state 8
+Result : <tuple @ 0x23479406a90> (('assignmentExpression', '=', 'num2', (' ...)
+
+State  : 8
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY assignmentExpression . LexToken(SEMICOLON,';',1,92)
+Action : Reduce rule [expression -> assignmentExpression] with [<tuple @ 0x23479406a90>] and goto state 5
+Result : <tuple @ 0x23479406a90> (('assignmentExpression', '=', 'num2', (' ...)
+
+State  : 5
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY expression . LexToken(SEMICOLON,';',1,92)
+Action : Shift and goto state 29
+
+State  : 29
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY expression SEMICOLON . LexToken(RCURLY,'}',1,94)
+Action : Reduce rule [statement -> expression SEMICOLON] with [<tuple @ 0x23479406a90>,';'] and goto state 82
+Result : <tuple @ 0x23479406a90> (('assignmentExpression', '=', 'num2', (' ...)
+
+State  : 82
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY statement . LexToken(RCURLY,'}',1,94)
+Action : Reduce rule [statementBodyExpression -> statement] with [<tuple @ 0x23479406a90>] and goto state 81
+Result : <tuple @ 0x23479406a90> (('assignmentExpression', '=', 'num2', (' ...)
+
+State  : 81
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY statementBodyExpression . LexToken(RCURLY,'}',1,94)
+Action : Shift and goto state 85
+
+State  : 85
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN LCURLY statementBodyExpression RCURLY . LexToken(ELSE,'else',1,96)
+Action : Reduce rule [statementBody -> LCURLY statementBodyExpression RCURLY] with ['{',<tuple @ 0x23479406a90>,'}'] and goto state 73
+Result : <tuple @ 0x23479406a90> (('assignmentExpression', '=', 'num2', (' ...)
+
+State  : 73
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody . LexToken(ELSE,'else',1,96)
+Action : Shift and goto state 80
+
+State  : 80
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE . LexToken(LCURLY,'{',1,101)
+Action : Shift and goto state 74
+
+State  : 74
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY . LexToken(ID,'num2',1,107)
+Action : Shift and goto state 17
+
+State  : 17
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID . LexToken(SET,'=',1,112)
+Action : Shift and goto state 45
+
+State  : 45
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET . LexToken(NUMBER_LITERAL,2,1,114)
+Action : Shift and goto state 24
+
+State  : 24
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET NUMBER_LITERAL . LexToken(MULTIPLY,'*',1,116)
+Action : Reduce rule [mutable -> NUMBER_LITERAL] with [2] and goto state 22
+Result : <int @ 0x7ffad1bc16c0> (2)
+
+State  : 22
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET mutable . LexToken(MULTIPLY,'*',1,116)
+Action : Reduce rule [factor -> mutable] with [2] and goto state 18
+Result : <int @ 0x7ffad1bc16c0> (2)
+
+State  : 18
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET factor . LexToken(MULTIPLY,'*',1,116)
+Action : Shift and goto state 50
+
+State  : 50
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET factor MULTIPLY . LexToken(NUMBER_LITERAL,3,1,118)
+Action : Reduce rule [multiplyOperator -> MULTIPLY] with ['*'] and goto state 49
+Result : <str @ 0x234770f4470> ('*')
+
+State  : 49
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET factor multiplyOperator . LexToken(NUMBER_LITERAL,3,1,118)
+Action : Shift and goto state 24
+
+State  : 24
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET factor multiplyOperator NUMBER_LITERAL . LexToken(PLUS,'+',1,120)
+Action : Reduce rule [mutable -> NUMBER_LITERAL] with [3] and goto state 22
+Result : <int @ 0x7ffad1bc16e0> (3)
+
+State  : 22
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET factor multiplyOperator mutable . LexToken(PLUS,'+',1,120)
+Action : Reduce rule [factor -> mutable] with [3] and goto state 18
+Result : <int @ 0x7ffad1bc16e0> (3)
+
+State  : 18
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET factor multiplyOperator factor . LexToken(PLUS,'+',1,120)
+Action : Reduce rule [multiplyExpression -> factor] with [3] and goto state 68
+Result : <int @ 0x7ffad1bc16e0> (3)
+
+State  : 68
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET factor multiplyOperator multiplyExpression . LexToken(PLUS,'+',1,120)
+Action : Reduce rule [multiplyExpression -> factor multiplyOperator multiplyExpression] with [2,'*',3] and goto state 60
+Result : <tuple @ 0x23479416d60> (('multiplyExpression', '*', 2, 3))
+
+State  : 60
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET multiplyExpression . LexToken(PLUS,'+',1,120)
+Action : Shift and goto state 31
+
+State  : 31
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET multiplyExpression PLUS . LexToken(NUMBER_LITERAL,4,1,122)
+Action : Reduce rule [sumOperator -> PLUS] with ['+'] and goto state 40
+Result : <str @ 0x234775e5f30> ('+')
+
+State  : 40
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET multiplyExpression sumOperator . LexToken(NUMBER_LITERAL,4,1,122)
+Action : Shift and goto state 24
+
+State  : 24
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET multiplyExpression sumOperator NUMBER_LITERAL . LexToken(SEMICOLON,';',1,123)
+Action : Reduce rule [mutable -> NUMBER_LITERAL] with [4] and goto state 22
+Result : <int @ 0x7ffad1bc1700> (4)
+
+State  : 22
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET multiplyExpression sumOperator mutable . LexToken(SEMICOLON,';',1,123)
+Action : Reduce rule [factor -> mutable] with [4] and goto state 18
+Result : <int @ 0x7ffad1bc1700> (4)
+
+State  : 18
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET multiplyExpression sumOperator factor . LexToken(SEMICOLON,';',1,123)
+Action : Reduce rule [multiplyExpression -> factor] with [4] and goto state 60
+Result : <int @ 0x7ffad1bc1700> (4)
+
+State  : 60
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET multiplyExpression sumOperator multiplyExpression . LexToken(SEMICOLON,';',1,123)
+Action : Reduce rule [sumExpression -> multiplyExpression] with [4] and goto state 61
+Result : <int @ 0x7ffad1bc1700> (4)
+
+State  : 61
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET multiplyExpression sumOperator sumExpression . LexToken(SEMICOLON,';',1,123)
+Action : Reduce rule [sumExpression -> multiplyExpression sumOperator sumExpression] with [<tuple @ 0x23479416d60>,'+',4] and goto state 67
+Result : <tuple @ 0x23479416450> (('sumExpression', '+', ('multiplyExpress ...)
+
+State  : 67
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY ID SET sumExpression . LexToken(SEMICOLON,';',1,123)
+Action : Reduce rule [assignmentExpression -> ID SET sumExpression] with ['num2','=',<tuple @ 0x23479416450>] and goto state 8
+Result : <tuple @ 0x23479416ef0> (('assignmentExpression', '=', 'num2', (' ...)
+
+State  : 8
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY assignmentExpression . LexToken(SEMICOLON,';',1,123)
+Action : Reduce rule [expression -> assignmentExpression] with [<tuple @ 0x23479416ef0>] and goto state 5
+Result : <tuple @ 0x23479416ef0> (('assignmentExpression', '=', 'num2', (' ...)
+
+State  : 5
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY expression . LexToken(SEMICOLON,';',1,123)
+Action : Shift and goto state 29
+
+State  : 29
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY expression SEMICOLON . LexToken(RCURLY,'}',1,125)
+Action : Reduce rule [statement -> expression SEMICOLON] with [<tuple @ 0x23479416ef0>,';'] and goto state 82
+Result : <tuple @ 0x23479416ef0> (('assignmentExpression', '=', 'num2', (' ...)
+
+State  : 82
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY statement . LexToken(RCURLY,'}',1,125)
+Action : Reduce rule [statementBodyExpression -> statement] with [<tuple @ 0x23479416ef0>] and goto state 81
+Result : <tuple @ 0x23479416ef0> (('assignmentExpression', '=', 'num2', (' ...)
+
+State  : 81
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY statementBodyExpression . LexToken(RCURLY,'}',1,125)
+Action : Shift and goto state 85
+
+State  : 85
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE LCURLY statementBodyExpression RCURLY . $end
+Action : Reduce rule [statementBody -> LCURLY statementBodyExpression RCURLY] with ['{',<tuple @ 0x23479416ef0>,'}'] and goto state 84
+Result : <tuple @ 0x23479416ef0> (('assignmentExpression', '=', 'num2', (' ...)
+
+State  : 84
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody ELSE statementBody . $end
+Action : Reduce rule [elifElseStatement -> ELSE statementBody] with ['else',<tuple @ 0x23479416ef0>] and goto state 78
+Result : <tuple @ 0x23479416ef0> (('assignmentExpression', '=', 'num2', (' ...)
+
+State  : 78
+Stack  : statement statement statement IF LPAREN relationExpression RPAREN statementBody elifElseStatement . $end
+Action : Reduce rule [ifStatement -> IF LPAREN relationExpression RPAREN statementBody elifElseStatement] with ['if','(',<tuple @ 0x23479416360>,')',<tuple @ 0x23479406a90>,<tuple @ 0x23479416ef0>] and goto state 6
+Result : <tuple @ 0x23479416540> (('ifStatement', ('relationExpression', ' ...)
+
+State  : 6
+Stack  : statement statement statement ifStatement . $end
+Action : Reduce rule [statement -> ifStatement] with [<tuple @ 0x23479416540>] and goto state 4
+Result : <tuple @ 0x23479416540> (('ifStatement', ('relationExpression', ' ...)
+
+State  : 4
+Stack  : statement statement statement statement . $end
+Action : Reduce rule [nextLinePrime -> <empty>] with [] and goto state 28
+Result : <NoneType @ 0x7ffad1b89880> (None)
+
+State  : 28
+Defaulted state 28: Reduce using 3
+Stack  : statement statement statement statement nextLinePrime . $end
+Action : Reduce rule [nextLinePrime -> statement nextLinePrime] with [<tuple @ 0x23479416540>,None] and goto state 28
+Result : <tuple @ 0x23479416540> (('ifStatement', ('relationExpression', ' ...)
+
+State  : 28
+Defaulted state 28: Reduce using 3
+Stack  : statement statement statement nextLinePrime . $end
+Action : Reduce rule [nextLinePrime -> statement nextLinePrime] with [<tuple @ 0x234794168b0>,<tuple @ 0x23479416540>] and goto state 28
+Result : <tuple @ 0x23479414500> (('statement', ('assignmentExpression', ' ...)
+
+State  : 28
+Defaulted state 28: Reduce using 3
+Stack  : statement statement nextLinePrime . $end
+Action : Reduce rule [nextLinePrime -> statement nextLinePrime] with [<tuple @ 0x23479416cc0>,<tuple @ 0x23479414500>] and goto state 28
+Result : <tuple @ 0x23479414480> (('statement', ('assignmentExpression', ' ...)
+
+State  : 28
+Defaulted state 28: Reduce using 3
+Stack  : statement nextLinePrime . $end
+Action : Reduce rule [nextLinePrime -> statement nextLinePrime] with [<tuple @ 0x23479416900>,<tuple @ 0x23479414480>] and goto state 3
+Result : <tuple @ 0x23479414540> (('statement', ('assignmentExpression', ' ...)
+
+State  : 3
+Defaulted state 3: Reduce using 2
+Stack  : nextLinePrime . $end
+Action : Reduce rule [nextLine -> nextLinePrime] with [<tuple @ 0x23479414540>] and goto state 2
+Result : <tuple @ 0x23479414540> (('statement', ('assignmentExpression', ' ...)
+
+State  : 2
+Defaulted state 2: Reduce using 1
+Stack  : nextLine . $end
+Action : Reduce rule [program -> nextLine] with [<tuple @ 0x23479414540>] and goto state 1
+Result : <tuple @ 0x23479414540> (('statement', ('assignmentExpression', ' ...)
+
+State  : 1
+Stack  : program . $end
+Done   : Returning <tuple @ 0x23479414540> (('statement', ('assignmentExpression', ' ...)
+PLY: PARSE DEBUG END

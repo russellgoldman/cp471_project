@@ -1,0 +1,6 @@
+num = 1
+if num <= 10 goto L1
+goto L2
+L1: t1 = num + 1
+num = t1 
+L2: 
