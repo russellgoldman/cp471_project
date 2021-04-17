@@ -20,8 +20,8 @@ class TestCase1(unittest.TestCase):
         # generate parse tree
         given_tree = p.parse(source)
         c = CodeGen()
-        c.build(given_tree)
-        given_code = c.generate()
+        c.build()
+        given_code = c.generate(given_tree)
         self.assertEqual(str(given_code), expected)
 if __name__ == '__main__':
     unittest.main()
