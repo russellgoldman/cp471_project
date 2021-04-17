@@ -127,13 +127,7 @@ def p_expression(p):
 def p_assignmentExpression(p):
     '''assignmentExpression : variableDeclaration SET sumExpression
                             | ID SET sumExpression'''
-    var_type = p[1][0]
-    var_val = p[1][1]
-    if  (var_type == 'String' and type(var_val) != 'str') or    \
-        (var_type == 'Boolean' and type(var_val) != 'bool'):
-        raise Exception('{} cannot be assigned to variable {} of type {}'.format(p[3], var_val, var_type))
-
-    p[0] = ('assignmentExpression', p[2], var_val, p[3])
+    p[0] = ('assignmentExpression', p[2], p[1], p[3])
 
 # --------------------
 # iterationExpression
@@ -250,8 +244,7 @@ def p_variableDeclaration(p):
     '''variableDeclaration : NUMBER ID
                            | BOOLEAN ID
                            | STRING ID'''
-    p[0] = (p[1], p[2])
-
+    p[0] = p[2] # ignore the variable name
 
 # factor
 def p_factor(p):
