@@ -1,8 +1,5 @@
 import unittest
 import sys, os
-sys.path.append(os.path.abspath(os.path.join('..', 'semantic')))
-from ez_parser import Parser
-
 
 class CodeGen(object):
     def build(self, tree):
