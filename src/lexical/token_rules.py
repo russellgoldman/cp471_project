@@ -1,10 +1,9 @@
-import sys, os, pdb
+import sys, os, typing, pdb
 sys.path.append(os.path.abspath(os.path.join('..')))
-from utilities.symbol_table_v2 import symbol_table
+from utilities.symbol_table_v2 import symbol_table, SymbolTable
 
-current_scope = 'global'
-current_node = symbol_table.get_node_by_scope(current_scope)
-print(current_node)
+current_scope: str = 'global'
+current_node: SymbolTable.Node = symbol_table.get_node_by_scope(current_scope)
 
 if_count = 0
 elif_count = 0
@@ -172,6 +171,11 @@ def t_ID(t):
 
 def t_SEPARATOR(t):
     r'\(|\)|{|}|\[|\]|;|,|\#|@|->|\|.'
+
+    global current_scope, current_node
+    if t.value == '}':
+        current_node = current_node.parent
+        current_scope = current_node.scope
 
     t.type = structural.get(t.value, 'SEPARATOR')
     return t
