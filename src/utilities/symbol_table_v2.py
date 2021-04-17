@@ -11,8 +11,8 @@ class SymbolTable:
 
         # Node initialization
         def __init__(self, scope: str, parent=None):
-            # records -> [symbol, Record]
             self.scope:     str                     = scope
+            # records -> [symbol, Record]
             self.records:   Dict[str, self.Record]  = {}
             # children -> [scope, Node]
             self.children:  Dict[str, self.Node]    = {}
@@ -91,6 +91,7 @@ class SymbolTable:
         # Perform BFS to print table
         seen: Set = set()
         to_visit = [self.root]
+        seen.add(self.root)
         out = ''
 
         while len(to_visit) != 0:
