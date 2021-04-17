@@ -1,38 +1,38 @@
-    LD r0,10
-    ST num1, r0
-    LD r0,5
-    ST num2, r0
-    LD r0, num1
-    LD r1, num2
-    ADD r0,r0,r1
-    ST t1, r0
-    LD r0, t1
-    ST num, r0
-    LD r0, num1
-    LD r1, 14
-    BGT r0, r1, L1
-    JMP L2
+LD r0, 10
+ST num1, r0
+LD r0, 5
+ST num2, r0
+LD r0, num1
+LD r1, num2
+ADD r0, r0, r1
+ST t1, r0
+LD r0, t1
+ST num1, r0
+LD r0, num1
+LD r1, 14
+BGT r0, r1, L1
+JMP L2
 L1:
-    LD r0,10
-    LD r1, 2
-    DIV r0,r0,r1
-    ST t2, t0
-    LD r0, t2
-    LD r1, 1
-    ADD r0,r0,r1
-    ST t3,r0
-    LD r0,t3
-    ST num2,r0
-    JMP L3
-L2: 
-    LD r0,2
-    LD r1, 3
-    MUL r0,r0,r1
-    ST t4,r0
-    LD r0,t4
-    LD r1, 4
-    ADD r0,r0,r1
-    ST t5,r0
-    LD r0,t5
-    ST num,r0
-L3:     
+LD r0, 10
+LD r1, 2
+DIV r0, r0, r1
+ST t2, r0
+LD r0, t2
+LD r1, 1
+ADD r0, r0, r1
+ST t3, r0
+LD r0, t3
+ST num2, r0
+JMP L3
+L2:
+LD r0, 2
+LD r1, 3
+MUL r0, r0, r1
+ST t4, r0
+LD r0, t4
+LD r1, 4
+ADD r0, r0, r1
+ST t5, r0
+LD r0, t5
+ST num2, r0
+L3:
