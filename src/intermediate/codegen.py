@@ -10,7 +10,7 @@ def main():
     global incrementL
     incrementT = 0
     incrementL = 0
-    source_f = open('./given/testcase3.ez', 'r')
+    source_f = open('./given/testcase1.ez', 'r')
     source = source_f.read()
     source_f.close()
 
@@ -20,7 +20,7 @@ def main():
     # generate parse tree
     given_tree = p.parse(source)
     #print(given_tree)
-    f = open('./codegen/out3.txt', 'w')
+    f = open('./codegen/out1.txt', 'w')
     f.write(traverse(given_tree))
 
 

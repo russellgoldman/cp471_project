@@ -7,7 +7,7 @@ from ez_parser import Parser
 
 def main():
 
-    source_f = open('./codegen/out3.txt', 'r')
+    source_f = open('./given/testcase1.txt', 'r')
     source = source_f.read()
     source_f.close()
 
