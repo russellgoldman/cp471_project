@@ -5,7 +5,7 @@ import re
 
 def main():
 
-    source_f = open('../intermediate/codegen/out3.txt', 'r')
+    source_f = open('./given/testcase1.txt', 'r')
     source = source_f.read()
     source_f.close()
 
@@ -18,6 +18,7 @@ def codegen(source):
     lineNumber = 0
     label = []
     variable = []
+    dictionary = {}
     source = source.split('\n')
     for line in source:      
         split = line.split()
@@ -28,6 +29,7 @@ def codegen(source):
                 elif word != 'goto' and word != 'if' and word not in variable and ":" not in word :
                     variable.append(word)
                     assembly += "LD r{}, {}\n".format(registerCount, word)
+                    dictionary[registerCount] = word                    
                     registerCount += 1
         #print(line)    
         if "if" in line:
@@ -58,7 +60,7 @@ def codegen(source):
         elif "goto" in line:
             assembly += "JMP L1\n"                  #"JMP L1\n"
         lineNumber += 1
-    #print(variable)
+    print(dictionary)
     #print(label)
     return assembly
 

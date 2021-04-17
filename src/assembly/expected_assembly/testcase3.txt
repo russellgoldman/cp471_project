@@ -1,0 +1,23 @@
+    LD r0, 0
+    ST number, r0
+    LD r0, 0
+    ST i, r0    
+(5)L1: BGT 10, r0, L2
+    JMP L3
+(7)L2: LD r0, number
+    LD r1, i
+    ADD r0, r0, r1
+    ST t2, r0
+    LD r0, t2
+    ST number, r0
+    LD r0, 3
+    ST number, r0
+    LD r0, 5
+    ST number, r0
+    LD r0, i
+    ADD r0,r0,1
+    ST t1, r0
+    LD r0, t1
+    ST i, r0
+    JMP L1
+(23)L3:
