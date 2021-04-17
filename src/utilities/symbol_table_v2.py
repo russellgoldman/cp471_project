@@ -50,6 +50,16 @@ class SymbolTable:
 
     def get_node_by_scope(self, scope: str) -> Node:
         return self.scopes[scope]
+    
+    def clear(self):
+        for scope in self.scopes.items():
+            scope_name = scope[1]
+            node = scope[1]
+            node.records = {}
+            node.children = {}
+
+            if scope_name != 'global':
+                del scope
 
     def print_node(self, out: str, current: Node):
         out += '  Node: {}\n'.format(current.scope)
@@ -81,7 +91,7 @@ class SymbolTable:
         # Perform BFS to print table
         seen: Set = set()
         to_visit = [self.root]
-        out = '\n\n'
+        out = ''
 
         while len(to_visit) != 0:
             current = to_visit.pop(0)

@@ -1,9 +1,8 @@
 # Ref: https://ply.readthedocs.io/en/latest/ply.html
 import sys, os
-
 sys.path.append(os.path.abspath(os.path.join('..')))
 import ply.yacc as yacc
-import grammar_rules
+import syntax.grammar_rules as grammar_rules
 from lexical.lexer import Lexer
 
 class Parser(object):

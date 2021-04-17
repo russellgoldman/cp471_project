@@ -1,6 +1,8 @@
 # Ref: https://ply.readthedocs.io/en/latest/ply.html
+import sys, os
 import ply.yacc as yacc
-import grammar_rules_ast
+sys.path.append(os.path.abspath(os.path.join('..')))
+import semantic.grammar_rules_ast as grammar_rules_ast
 from lexer import Lexer
 
 class Parser(object):

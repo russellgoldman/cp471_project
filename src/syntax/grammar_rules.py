@@ -1,7 +1,7 @@
 import sys, os
-sys.path.append(os.path.abspath(os.path.join('..')))
-from lexical.token_rules import tokens
-from utilities.syntax_tree import SymbolType, NonTerminal, create_tree_node
+sys.path.append(os.path.abspath(os.path.join('..', 'lexical')))
+from token_rules import tokens
+from syntax_tree import SymbolType, NonTerminal, create_tree_node
 
 # program
 def p_program_nextLine(p):
