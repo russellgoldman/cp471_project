@@ -6,6 +6,7 @@
     LD r1, num2
     ADD r0,r0,r1
     ST t1, r0
+    LD r0, t1
     ST num, r0
     LD r0, num1
     LD r1, 14
