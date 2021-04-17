@@ -27,16 +27,19 @@ class TestLoopToken(unittest.TestCase):
         assert_each_token(self, source, expected_token)
 
     def test_while_loop(self):
-        source = "while (bool == True) { }"
+        source = "while (True) { Number num = 5; }"
 
         expected_token = [
             "('WHILE', 'while')",
             "('LPAREN', '(')",
-            "('ID', 'bool')",
-            "('EQUAL', '==')",
             "('TRUE', 'True')",
             "('RPAREN', ')')",
             "('LCURLY', '{')",
+            "('NUMBER', 'Number')",
+            "('ID', 'num')",
+            "('SET', '=')",
+            "('NUMBER_LITERAL', 5)",
+            "('SEMICOLON', ';')",
             "('RCURLY', '}')",
         ]
 

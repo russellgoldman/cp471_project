@@ -1,7 +1,10 @@
 # Ref: https://ply.readthedocs.io/en/latest/ply.html
+import sys, os
+
+sys.path.append(os.path.abspath(os.path.join('..')))
 import ply.yacc as yacc
 import grammar_rules
-from lexer import Lexer
+from lexical.lexer import Lexer
 
 class Parser(object):
     # Build the parser using the grammar rules module

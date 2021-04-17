@@ -108,7 +108,7 @@ number      Number      Global
 
 1:
 Symbol      Type        Scope           Symbol      Type        Scope
-i           Number      For             n           Number      If
+i           Number      For_1           n           Number      If_1
 
 
 """
